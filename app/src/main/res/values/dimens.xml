@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small_space">5dp</dimen>
+    <dimen name="wide_space">16dp</dimen>
+    <dimen name="medium_space">8dp</dimen>
+    <dimen name="max_elevation">10dp</dimen>
+</resources>
