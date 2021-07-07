@@ -4,4 +4,5 @@
     <dimen name="wide_space">16dp</dimen>
     <dimen name="medium_space">8dp</dimen>
     <dimen name="max_elevation">10dp</dimen>
+    <dimen name="very_small_space">2dp</dimen>
 </resources>
