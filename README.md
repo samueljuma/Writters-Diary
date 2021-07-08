@@ -6,4 +6,4 @@ An Android Application build for online writers to keep track of their orders [I
 
 ### Screenshots
 |<img src="screenshots/1.jpeg" width=250/>|
-|:--:|:--:|:--:|:--:|
+|:--:|
