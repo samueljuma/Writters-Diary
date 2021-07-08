@@ -25,7 +25,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:src="@drawable/writers_image"
+         />
 
         <TextView
             android:id="@+id/who_text"
@@ -33,8 +34,8 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/clientImage"
-            app:layout_constraintEnd_toEndOf="@+id/clientImage"
-            app:layout_constraintStart_toStartOf="@+id/clientImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/clientImage"
             app:layout_constraintTop_toTopOf="@+id/clientImage"
             tools:text="@string/my_clients" />
 
