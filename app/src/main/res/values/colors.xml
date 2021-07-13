@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="homebg">#A8A4A4</color>
     <color name="clientbcg">#3D414C</color>
+    <color name="blue">#00008B</color>
 </resources>

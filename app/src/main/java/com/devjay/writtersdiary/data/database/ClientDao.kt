@@ -1,4 +1,8 @@
 package com.devjay.writtersdiary.data.database
 
-class ClientDao {
+import androidx.room.Dao
+
+@Dao
+interface ClientDao {
+
 }

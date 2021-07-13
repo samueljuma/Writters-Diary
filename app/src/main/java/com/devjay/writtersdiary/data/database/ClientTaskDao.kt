@@ -1,4 +1,7 @@
 package com.devjay.writtersdiary.data.database
 
-class ClientTaskDao {
+import androidx.room.Dao
+
+@Dao
+interface ClientTaskDao {
 }

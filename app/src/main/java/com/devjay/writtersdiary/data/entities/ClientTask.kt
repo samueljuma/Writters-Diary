@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 data class ClientTask(
 
     @PrimaryKey(autoGenerate = true) var taskID: Long = 0L,
+    @ColumnInfo(name = "assigned_by") var assignedBy: Long =0L,
     @ColumnInfo(name = "order_number") var orderNumber: String,
     @ColumnInfo(name = "task_title") var title: String,
     @ColumnInfo(name = "number_of_pages_words") var numberOfPagesOrWordCount: Int = 0,
