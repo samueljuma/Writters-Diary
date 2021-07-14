@@ -1,4 +1,4 @@
 package com.devjay.writtersdiary.data.repository
 
-class ClientTaskRepositoryImpl {
+class WriterTaskRepository {
 }
