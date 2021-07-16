@@ -14,10 +14,6 @@ interface WriterDao {
     @Delete
     suspend fun deleteWriter(writer: Writer)
 
-    // update writer
-    @Update
-    fun update(writer: Writer)
-
     // get a specific writer by ID
     @Query ("SELECT *FROM writers_table WHERE writerID = :key")
     fun getWriter (key: Long): LiveData<Writer>

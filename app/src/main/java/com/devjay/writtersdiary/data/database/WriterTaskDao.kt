@@ -14,8 +14,8 @@ interface WriterTaskDao {
     suspend fun deleteWriterTask(writerTask: WriterTask)
 
     // update writerTask
-    @Update
-    fun update(writerTask: WriterTask)
+    @Query("UPDATE writers_tasks_table SET task_status = :status WHERE taskID = :taskID")
+    suspend fun updateTask(status: String, taskID: Long)
 
     // get a specific writerTask by ID
     @Query("SELECT *FROM writers_tasks_table WHERE taskID = :key")

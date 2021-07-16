@@ -14,14 +14,14 @@ interface ClientTaskDao {
     suspend fun deleteClientTask(clientTask: ClientTask)
 
     // update clientTask
-    @Update
-    fun update(clientTask: ClientTask)
+    @Query("UPDATE client_tasks_table SET task_status = :status WHERE taskID = :taskID")
+    suspend fun updateClientTask(status: String, taskID: Long)
 
     // get a specific clientTask by ID
     @Query("SELECT *FROM client_tasks_table WHERE taskID = :key")
-    fun getWriterTask (key: Long): LiveData<ClientTask>
+    fun getClientTask (key: Long): LiveData<ClientTask>
 
-    //get all writer's Tasks
+    //get all client's Tasks
     @Query("SELECT * FROM client_tasks_table WHERE assigned_by = :key ORDER BY taskID DESC")
-    fun getAllWritersTasks(key: Long): LiveData<List<ClientTask>>
+    fun getAllClientsTasks(key: Long): LiveData<List<ClientTask>>
 }

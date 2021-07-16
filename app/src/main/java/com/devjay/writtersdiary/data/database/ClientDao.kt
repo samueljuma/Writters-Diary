@@ -14,10 +14,6 @@ interface ClientDao {
     @Delete
     suspend fun deleteClient (client: Client)
 
-    // update client
-    @Update
-    fun update(client: Client)
-
     // get a specific client by ID
     @Query("SELECT *FROM clients_table WHERE clientID = :key")
     fun getClient (key: Long): LiveData<Client>
