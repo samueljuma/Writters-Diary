@@ -1,10 +1,7 @@
 package com.devjay.writtersdiary.data.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.devjay.writtersdiary.data.entities.Client
 
 @Dao
@@ -12,6 +9,10 @@ interface ClientDao {
     // insert client
     @Insert
     suspend fun insert(client:Client)
+
+    // delete client
+    @Delete
+    suspend fun deleteClient (client: Client)
 
     // update client
     @Update

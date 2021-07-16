@@ -1,10 +1,7 @@
 package com.devjay.writtersdiary.data.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.devjay.writtersdiary.data.entities.ClientTask
 
 @Dao
@@ -12,6 +9,9 @@ interface ClientTaskDao {
     // insert clientTask
     @Insert
     suspend fun insert(clientTask: ClientTask)
+
+    @Delete
+    suspend fun deleteClientTask(clientTask: ClientTask)
 
     // update clientTask
     @Update

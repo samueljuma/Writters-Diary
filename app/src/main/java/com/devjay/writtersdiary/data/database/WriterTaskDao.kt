@@ -1,10 +1,7 @@
 package com.devjay.writtersdiary.data.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.devjay.writtersdiary.data.entities.WriterTask
 
 @Dao
@@ -12,6 +9,9 @@ interface WriterTaskDao {
     // insert writerTask
     @Insert
     suspend fun insert(writerTask: WriterTask)
+
+    @Delete
+    suspend fun deleteWriterTask(writerTask: WriterTask)
 
     // update writerTask
     @Update

@@ -1,10 +1,7 @@
 package com.devjay.writtersdiary.data.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.devjay.writtersdiary.data.entities.Writer
 
 @Dao
@@ -13,6 +10,9 @@ interface WriterDao {
     // insert writer
     @Insert
     suspend fun insert(writer: Writer)
+
+    @Delete
+    suspend fun deleteWriter(writer: Writer)
 
     // update writer
     @Update
