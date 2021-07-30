@@ -51,6 +51,22 @@ class AppDatabaseTest : TestCase(){
 
         assertThat(writer).isNotIn(writers)
     }
+    @Test
+    fun testClientDao () = runBlocking{
+
+        val client = Client(2,"juma",3,2);
+        clientDao.insert(client)
+        var clients = clientDao.getAllClients()
+
+        assertThat(clientDao.getClient(2)).isEqualTo(client)
+        assertThat(client).isIn(clients)
+
+        clientDao.deleteClient(client)
+        clients = clientDao.getAllClients()
+
+        assertThat(client).isNotIn(clients)
+
+    }
 
     @After
     fun closeDb(){
