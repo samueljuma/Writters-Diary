@@ -20,6 +20,6 @@ interface WriterDao {
 
     //get all writers
     @Query ("SELECT * FROM writers_table ORDER BY writerID DESC")
-    fun getAllWriters(): LiveData<List<Writer>>
+    fun getAllWriters(): List<Writer>
 
 }

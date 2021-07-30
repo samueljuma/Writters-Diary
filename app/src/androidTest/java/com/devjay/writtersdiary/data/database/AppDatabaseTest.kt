@@ -1,16 +1,13 @@
 package com.devjay.writtersdiary.data.database
 
-import android.content.Context
 import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import com.devjay.writtersdiary.data.entities.Writer
 import junit.framework.TestCase
 import com.google.common.truth.Truth.assertThat;
 import kotlinx.coroutines.runBlocking
 import org.junit.After
-
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,8 +22,8 @@ class AppDatabaseTest : TestCase(){
     private lateinit var clientDao: ClientDao
 
     @Before
-    override fun setUp() {
-        val context = ApplicationProvider.getApplicationContext<Context>()
+     fun createDb() = runBlocking {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
         db = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java).build()
 
         writerDao = db.writerDao
@@ -40,7 +37,10 @@ class AppDatabaseTest : TestCase(){
 
         val writer = Writer(2,"juma",3,2);
         writerDao.insert(writer)
-        assertThat(writerDao.getWriter(2)).isEqualTo(writer)
+
+        val writers = writerDao.getAllWriters()
+
+        assertThat(writer).isIn(writers)
 
     }
 
