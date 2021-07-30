@@ -18,10 +18,10 @@ interface ClientTaskDao {
     suspend fun updateClientTask(status: String, taskID: Long)
 
     // get a specific clientTask by ID
-    @Query("SELECT *FROM client_tasks_table WHERE taskID = :key")
-    fun getClientTask (key: Long): LiveData<ClientTask>
+    @Query("SELECT * FROM client_tasks_table WHERE taskID = :taskId")
+    fun getClientTask (taskId: Long): ClientTask
 
     //get all client's Tasks
-    @Query("SELECT * FROM client_tasks_table WHERE assigned_by = :key ORDER BY taskID DESC")
-    fun getAllClientsTasks(key: Long): LiveData<List<ClientTask>>
+    @Query("SELECT * FROM client_tasks_table WHERE assigned_by = :assignedBy ORDER BY taskID DESC")
+    fun getAllClientsTasks(assignedBy: Long): List<ClientTask>
 }

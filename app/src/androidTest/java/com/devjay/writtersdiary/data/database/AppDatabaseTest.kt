@@ -1,9 +1,13 @@
 package com.devjay.writtersdiary.data.database
 
+import androidx.lifecycle.asFlow
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.devjay.writtersdiary.data.entities.Client
+import com.devjay.writtersdiary.data.entities.ClientTask
 import com.devjay.writtersdiary.data.entities.Writer
+import com.devjay.writtersdiary.data.entities.WriterTask
 import junit.framework.TestCase
 import com.google.common.truth.Truth.assertThat;
 import kotlinx.coroutines.runBlocking
@@ -37,11 +41,15 @@ class AppDatabaseTest : TestCase(){
 
         val writer = Writer(2,"juma",3,2);
         writerDao.insert(writer)
+        var writers = writerDao.getAllWriters()
 
-        val writers = writerDao.getAllWriters()
-
+        assertThat(writerDao.getWriter(2)).isEqualTo(writer)
         assertThat(writer).isIn(writers)
 
+        writerDao.deleteWriter(writer)
+        writers = writerDao.getAllWriters()
+
+        assertThat(writer).isNotIn(writers)
     }
 
     @After

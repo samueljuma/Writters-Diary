@@ -16,7 +16,7 @@ interface WriterDao {
 
     // get a specific writer by ID
     @Query ("SELECT *FROM writers_table WHERE writerID = :key")
-    fun getWriter (key: Long): LiveData<Writer>
+    fun getWriter (key: Long): Writer
 
     //get all writers
     @Query ("SELECT * FROM writers_table ORDER BY writerID DESC")

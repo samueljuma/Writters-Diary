@@ -16,9 +16,9 @@ interface ClientDao {
 
     // get a specific client by ID
     @Query("SELECT *FROM clients_table WHERE clientID = :key")
-    fun getClient (key: Long): LiveData<Client>
+    fun getClient (key: Long): Client
 
     //get all clients
     @Query("SELECT * FROM clients_table ORDER BY clientID DESC")
-    fun getAllClients(): LiveData<List<Client>>
+    fun getAllClients(): List<Client>
 }

@@ -19,9 +19,9 @@ interface WriterTaskDao {
 
     // get a specific writerTask by ID
     @Query("SELECT *FROM writers_tasks_table WHERE taskID = :key")
-    fun getWriterTask (key: Long): LiveData<WriterTask>
+    fun getWriterTask (key: Long): WriterTask
 
     //get all writer's Tasks
     @Query("SELECT * FROM writers_tasks_table WHERE writerID_assigned = :key ORDER BY taskID DESC")
-    fun getAllWritersTasks(key: Long): LiveData<List<WriterTask>>
+    fun getAllWritersTasks(key: Long): List<WriterTask>
 }
