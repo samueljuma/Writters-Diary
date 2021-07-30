@@ -84,6 +84,23 @@ class AppDatabaseTest : TestCase(){
         assertThat(writerTaskDao.getWriterTask(3)).isNotIn(writersTasks)
     }
 
+    @Test
+    fun testClientTaskDao () = runBlocking{
+
+        val clientTask = ClientTask(3,3,"234","Assignment",
+            3,300.00,"complete")
+        // insert
+        clientTaskDao.insert(clientTask)
+        var clientsTasks = clientTaskDao.getAllClientsTasks(3)
+        assertThat(clientTaskDao.getClientTask(3)).isIn(clientsTasks)
+        //update
+        clientTaskDao.updateClientTask("pending",3)
+        assertThat(clientTaskDao.getClientTask(3).status).matches("pending")
+        //delete
+        clientTaskDao.deleteClientTask(clientTaskDao.getClientTask(3))
+        clientsTasks = clientTaskDao.getAllClientsTasks(3)
+        assertThat(clientTaskDao.getClientTask(3)).isNotIn(clientsTasks)
+    }
 
     @After
     fun closeDb(){
