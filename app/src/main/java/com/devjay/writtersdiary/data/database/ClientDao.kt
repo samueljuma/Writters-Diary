@@ -1,8 +1,8 @@
 package com.devjay.writtersdiary.data.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.devjay.writtersdiary.data.entities.Client
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ClientDao {
@@ -16,9 +16,9 @@ interface ClientDao {
 
     // get a specific client by ID
     @Query("SELECT *FROM clients_table WHERE clientID = :key")
-    fun getClient (key: Long): Client
+    fun getClient (key: Long): Flow<Client>
 
     //get all clients
     @Query("SELECT * FROM clients_table ORDER BY clientID DESC")
-    fun getAllClients(): List<Client>
+    fun getAllClients(): Flow<List<Client>>
 }

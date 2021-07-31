@@ -10,6 +10,9 @@ import com.devjay.writtersdiary.data.entities.Writer
 import com.devjay.writtersdiary.data.entities.WriterTask
 import junit.framework.TestCase
 import com.google.common.truth.Truth.assertThat;
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.flow.toSet
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
@@ -41,13 +44,13 @@ class AppDatabaseTest : TestCase(){
 
         val writer = Writer(2,"juma",3,2);
         writerDao.insert(writer)
-        var writers = writerDao.getAllWriters()
+        var writers = writerDao.getAllWriters().first()
 
-        assertThat(writerDao.getWriter(2)).isEqualTo(writer)
+        assertThat(writerDao.getWriter(2).first()).isEqualTo(writer)
         assertThat(writer).isIn(writers)
 
         writerDao.deleteWriter(writer)
-        writers = writerDao.getAllWriters()
+        writers = writerDao.getAllWriters().first()
 
         assertThat(writer).isNotIn(writers)
     }
@@ -56,15 +59,18 @@ class AppDatabaseTest : TestCase(){
 
         val client = Client(2,"juma",3,2);
         clientDao.insert(client)
-        var clients = clientDao.getAllClients()
+        var clients = clientDao.getAllClients().first()
 
-        assertThat(clientDao.getClient(2)).isEqualTo(client)
+        assertThat(clientDao.getClient(2).first()).isEqualTo(client)
         assertThat(client).isIn(clients)
 
         clientDao.deleteClient(client)
-        clients = clientDao.getAllClients()
+        clients = clientDao.getAllClients().first()
 
         assertThat(client).isNotIn(clients)
+
+        assertThat(clientDao.getAllClients().first().size).isEqualTo(0)
+
     }
     @Test
     fun testWriterTaskDao () = runBlocking{
@@ -73,14 +79,14 @@ class AppDatabaseTest : TestCase(){
             3,300.00,"complete")
         // insert
         writerTaskDao.insert(writerTask)
-        var writersTasks = writerTaskDao.getAllWritersTasks(3)
-        assertThat(writerTaskDao.getWriterTask(3)).isIn(writersTasks)
+        var writersTasks = writerTaskDao.getAllWritersTasks(3).first()
+        assertThat(writerTaskDao.getWriterTask(3).first()).isIn(writersTasks)
         //update
         writerTaskDao.updateTask("pending",3)
-        assertThat(writerTaskDao.getWriterTask(3).status).matches("pending")
+        assertThat(writerTaskDao.getWriterTask(3).first().status).matches("pending")
         //delete
-        writerTaskDao.deleteWriterTask(writerTaskDao.getWriterTask(3))
-        writersTasks = writerTaskDao.getAllWritersTasks(3)
+        writerTaskDao.deleteWriterTask(writerTaskDao.getWriterTask(3).first())
+        writersTasks = writerTaskDao.getAllWritersTasks(3).first()
         assertThat(writerTaskDao.getWriterTask(3)).isNotIn(writersTasks)
     }
 
@@ -91,14 +97,14 @@ class AppDatabaseTest : TestCase(){
             3,300.00,"complete")
         // insert
         clientTaskDao.insert(clientTask)
-        var clientsTasks = clientTaskDao.getAllClientsTasks(3)
-        assertThat(clientTaskDao.getClientTask(3)).isIn(clientsTasks)
+        var clientsTasks = clientTaskDao.getAllClientsTasks(3).first()
+        assertThat(clientTaskDao.getClientTask(3).first()).isIn(clientsTasks)
         //update
         clientTaskDao.updateClientTask("pending",3)
-        assertThat(clientTaskDao.getClientTask(3).status).matches("pending")
+        assertThat(clientTaskDao.getClientTask(3).first().status).matches("pending")
         //delete
-        clientTaskDao.deleteClientTask(clientTaskDao.getClientTask(3))
-        clientsTasks = clientTaskDao.getAllClientsTasks(3)
+        clientTaskDao.deleteClientTask(clientTaskDao.getClientTask(3).first())
+        clientsTasks = clientTaskDao.getAllClientsTasks(3).first()
         assertThat(clientTaskDao.getClientTask(3)).isNotIn(clientsTasks)
     }
 

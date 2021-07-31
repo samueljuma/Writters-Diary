@@ -3,6 +3,7 @@ package com.devjay.writtersdiary.data.database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.devjay.writtersdiary.data.entities.ClientTask
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ClientTaskDao {
@@ -19,9 +20,9 @@ interface ClientTaskDao {
 
     // get a specific clientTask by ID
     @Query("SELECT * FROM client_tasks_table WHERE taskID = :taskId")
-    fun getClientTask (taskId: Long): ClientTask
+    fun getClientTask (taskId: Long): Flow<ClientTask>
 
     //get all client's Tasks
     @Query("SELECT * FROM client_tasks_table WHERE assigned_by = :assignedBy ORDER BY taskID DESC")
-    fun getAllClientsTasks(assignedBy: Long): List<ClientTask>
+    fun getAllClientsTasks(assignedBy: Long): Flow<List<ClientTask>>
 }
