@@ -21,12 +21,8 @@ class ClientTaskRepository @Inject constructor(
         clientTaskDao.updateClientTask(status,taskId)
     }
 
-    fun getClientTask(taskId: Long){
-        clientTaskDao.getClientTask(taskId)
-    }
+    fun getClientTask(taskId: Long) = clientTaskDao.getClientTask(taskId)
 
-    fun getAllClientsTasks (clientId: Long){
-        clientTaskDao.getAllClientsTasks(clientId)
-    }
+    fun getAllClientsTasks (clientId: Long) = clientTaskDao.getAllClientsTasks(clientId)
 
 }

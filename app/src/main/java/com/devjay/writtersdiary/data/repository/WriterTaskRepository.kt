@@ -21,12 +21,9 @@ class WriterTaskRepository @Inject constructor(
         writerTaskDao.updateTask(status,taskId)
     }
 
-    fun getWriterTask(taskId: Long){
-        writerTaskDao.getWriterTask(taskId)
-    }
-    fun getAllWritersTasks(writerId: Long){
-        writerTaskDao.getAllWritersTasks(writerId)
-    }
+    fun getWriterTask(taskId: Long) = writerTaskDao.getWriterTask(taskId)
+
+    fun getAllWritersTasks(writerId: Long) = writerTaskDao.getAllWritersTasks(writerId)
 
 
 }

@@ -18,14 +18,8 @@ class WriterRepository @Inject constructor(
         writerDao.deleteWriter(writer)
     }
 
-    fun getWriter(id: Long){
-        writerDao.getWriter(id)
-    }
+    fun getWriter(id: Long) = writerDao.getWriter(id)
 
-    fun getAllWriters(){
-        writerDao.getAllWriters()
-    }
-
-
+    fun getAllWriters() = writerDao.getAllWriters()
 
 }
