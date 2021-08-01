@@ -18,8 +18,8 @@ class ClientRepository @Inject constructor(
         clientDao.deleteClient(client)
     }
 
-    fun getClient(id: Long){
-        clientDao.getClient(id)
+    fun getClient(clientId: Long){
+        clientDao.getClient(clientId)
     }
 
     fun getAllClients(){
