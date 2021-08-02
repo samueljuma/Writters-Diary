@@ -8,14 +8,16 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.devjay.writtersdiary.R
 import com.devjay.writtersdiary.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A simple [Fragment] subclass.
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : Fragment() {
 
+@AndroidEntryPoint
+class HomeFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

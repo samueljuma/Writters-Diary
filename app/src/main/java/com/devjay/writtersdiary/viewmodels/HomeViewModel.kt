@@ -1,9 +1,7 @@
 package com.devjay.writtersdiary.viewmodels
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.devjay.writtersdiary.data.entities.Writer
 import com.devjay.writtersdiary.data.repository.ClientRepository
 import com.devjay.writtersdiary.data.repository.WriterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,6 +14,7 @@ class HomeViewModel @Inject constructor(
 ): ViewModel() {
 
     val clients = clientRepository.getAllClients().asLiveData()
+    val writers = writerRepository.getAllWriters().asLiveData()
 
 
 }
