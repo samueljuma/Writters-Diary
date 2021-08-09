@@ -5,6 +5,6 @@
     <string name="my_writers">My Writers</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="who_number">( %d )</string>
+    <string name="who_number">(%d)</string>
     <string name="view">View</string>
 </resources>

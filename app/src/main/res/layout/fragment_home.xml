@@ -13,7 +13,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.HomeFragment"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/cardview_shadow_end_color"
     >
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
