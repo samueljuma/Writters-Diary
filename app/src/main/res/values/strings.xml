@@ -7,4 +7,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="who_number">(%d)</string>
     <string name="view">View</string>
+    <string name="add_writer">addWriter</string>
+    <string name="no_writers">No writers Yet, Click Button Below to Add Writers</string>
+    <string name="writers_fragment_title">Writers</string>
+    <string name="home_fragment_title">Home</string>
 </resources>

@@ -3,11 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment2">
+    app:startDestination="@id/writersFragment">
 
     <fragment
-        android:id="@+id/homeFragment2"
+        android:id="@+id/homeFragment"
         android:name="com.devjay.writtersdiary.ui.HomeFragment"
-        android:label="Home"
-        tools:layout="@layout/fragment_home"/>
+        android:label="@string/home_fragment_title"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_writersFragment"
+            app:destination="@id/writersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/writersFragment"
+        android:name="com.devjay.writtersdiary.ui.WritersFragment"
+        android:label="@string/writers_fragment_title"
+        tools:layout="@layout/fragment_writers"/>
 </navigation>

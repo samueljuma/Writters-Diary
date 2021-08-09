@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.devjay.writtersdiary.adpters.WritersListAdapter
 import com.devjay.writtersdiary.databinding.FragmentWritersBinding
 import com.devjay.writtersdiary.viewmodels.WritersListViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +30,21 @@ class WritersFragment : Fragment() {
     ): View? {
         binding = FragmentWritersBinding.inflate(inflater,container,false)
 
+        val adapter = WritersListAdapter()
+        binding.writersList.adapter =adapter
+
+        // handle recyclerview
+        subscribeUI(adapter,binding)
+
+        binding.lifecycleOwner = this
         return binding.root
+    }
+
+    private fun subscribeUI(adapter: WritersListAdapter, binding: FragmentWritersBinding){
+        viewModel.listOfWriters.observe(viewLifecycleOwner){ result ->
+            binding.hasWriters = !result.isNullOrEmpty()
+            adapter.submitList(result)
+        }
     }
 
 }

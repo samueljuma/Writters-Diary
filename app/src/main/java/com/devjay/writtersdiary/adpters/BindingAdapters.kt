@@ -1,5 +1,6 @@
 package com.devjay.writtersdiary.adpters
 
+import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.devjay.writtersdiary.data.entities.Writer
@@ -23,5 +24,14 @@ fun TextView.setWritersPendingTasks(item: Writer?){
 fun TextView.setWritersCompletedTasks(item: Writer?){
     item?.let {
         text = formatCompleteTasks(item.completedTasks)
+    }
+}
+
+@BindingAdapter("isGone")
+fun bindIsGone(view: View, isGone: Boolean) {
+    view.visibility = if (isGone) {
+        View.GONE
+    } else {
+        View.VISIBLE
     }
 }
