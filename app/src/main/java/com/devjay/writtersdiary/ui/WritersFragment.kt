@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.devjay.writtersdiary.R
 import com.devjay.writtersdiary.databinding.FragmentWritersBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
 /**
@@ -14,6 +15,7 @@ import com.devjay.writtersdiary.databinding.FragmentWritersBinding
  * Use the [WritersFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class WritersFragment : Fragment() {
 
     private lateinit var binding: FragmentWritersBinding

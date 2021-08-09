@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.devjay.writtersdiary.R
 import com.devjay.writtersdiary.databinding.FragmentClientsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A simple [Fragment] subclass.
  * Use the [ClientsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class ClientsFragment : Fragment() {
 
     private lateinit var binding: FragmentClientsBinding
