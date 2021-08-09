@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/writersFragment">
+    app:startDestination="@id/addWriterFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -18,5 +18,14 @@
         android:id="@+id/writersFragment"
         android:name="com.devjay.writtersdiary.ui.WritersFragment"
         android:label="@string/writers_fragment_title"
-        tools:layout="@layout/fragment_writers"/>
+        tools:layout="@layout/fragment_writers">
+        <action
+            android:id="@+id/action_writersFragment_to_addWriterFragment"
+            app:destination="@id/addWriterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addWriterFragment"
+        android:name="com.devjay.writtersdiary.ui.AddWriterFragment"
+        android:label="AddWriterFragment"
+        tools:layout="@layout/fragment_add_writer"/>
 </navigation>
