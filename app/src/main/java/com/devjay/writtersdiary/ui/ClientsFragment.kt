@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.devjay.writtersdiary.R
+import com.devjay.writtersdiary.databinding.FragmentClientsBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -14,12 +15,14 @@ import com.devjay.writtersdiary.R
  */
 class ClientsFragment : Fragment() {
 
+    private lateinit var binding: FragmentClientsBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_clients, container, false)
+        binding = FragmentClientsBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
 }

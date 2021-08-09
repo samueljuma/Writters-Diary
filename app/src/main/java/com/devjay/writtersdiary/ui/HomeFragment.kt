@@ -19,12 +19,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
+    private lateinit var binding: FragmentHomeBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentHomeBinding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_home,container, false)
+        binding = FragmentHomeBinding.inflate(inflater,container,false)
         return binding.root
     }
 
