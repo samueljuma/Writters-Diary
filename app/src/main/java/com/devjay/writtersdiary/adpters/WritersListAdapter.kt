@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devjay.writtersdiary.data.entities.Writer
 import com.devjay.writtersdiary.databinding.FragmentWritersBinding
+import com.devjay.writtersdiary.databinding.WriterCardItemBinding
 
 class WritersListAdapter: ListAdapter<Writer, WritersListAdapter.ViewHolder>(WriterDiffCallback()) {
 
@@ -19,15 +20,15 @@ class WritersListAdapter: ListAdapter<Writer, WritersListAdapter.ViewHolder>(Wri
     }
 
     // viewHolder
-    class ViewHolder (val binding: FragmentWritersBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind (item: com.devjay.writtersdiary.data.entities.Writer){
-            binding.writer =item
+    class ViewHolder (val binding: WriterCardItemBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind (item: Writer){
+            binding.writer = item
             binding.executePendingBindings()
         }
         companion object{
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = FragmentWritersBinding.inflate(layoutInflater, parent, false)
+                val binding = WriterCardItemBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }
