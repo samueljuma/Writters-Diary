@@ -8,20 +8,16 @@
             name="client"
             type="com.devjay.writtersdiary.data.entities.Client" />
     </data>
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/wide_space"
-        app:cardElevation="@dimen/medium_space"
-        app:cardMaxElevation="@dimen/max_elevation"
-        android:layout_margin="@dimen/medium_space"
-        app:cardPreventCornerOverlap="true"
-        app:cardBackgroundColor="@color/cyan_50">
+        app:cardCornerRadius="@dimen/medium_space"
+        android:layout_margin="@dimen/very_small_space"
+        app:cardBackgroundColor="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="115dp">
+            android:layout_height="100dp">
 
             <TextView
                 android:id="@+id/who_text"
@@ -29,14 +25,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small_space"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Johnson Doe" />
+                tools:text="Johnson Doe"
+                app:clientsName="@{client}"/>
 
             <TextView
                 android:id="@+id/complete_assignments"
@@ -47,14 +44,14 @@
                 android:background="@drawable/view_background_red"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.9"
-                tools:text="Complete (5)" />
+                tools:text="Complete (5)"
+                app:clientsCompletedTasks="@{client}"/>
 
             <TextView
                 android:id="@+id/pending_assignments"
@@ -73,7 +70,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.100000024"
-                tools:text="Pending (5)" />
+                tools:text="Pending (5)"
+                app:clientsPendingTasks="@{client}"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

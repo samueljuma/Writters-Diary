@@ -18,13 +18,15 @@
             android:id="@+id/client_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/small_space"
+            android:layout_marginStart="@dimen/small_space"
             app:isGone="@{!hasClients}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/client_card_item"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_writers"
+            android:text="@string/no_clients"
             android:textColor="@color/black"
             app:isGone="@{hasClients}"
             style="@style/mediumTextStyle"

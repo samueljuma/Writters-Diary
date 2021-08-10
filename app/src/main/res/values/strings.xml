@@ -9,6 +9,7 @@
     <string name="view">View</string>
     <string name="add_writer">addWriter</string>
     <string name="no_writers">No writers Yet, Click Button Below to Add Writers</string>
+    <string name="no_clients">No Clients Yet, Click Button Below to Add Clients</string>
     <string name="writers_fragment_title">Writers</string>
     <string name="home_fragment_title">Home</string>
     <string name="enter_name">Enter First and Last Names</string>
