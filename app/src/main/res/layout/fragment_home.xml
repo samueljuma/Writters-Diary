@@ -80,6 +80,7 @@
                 android:layout_marginEnd="@dimen/medium_space"
                 android:layout_marginBottom="@dimen/medium_space"
                 android:text="@string/view"
+                android:onClick="@{()->homeViewModel.onViewClientsClicked()}"
                 style="@style/mediumTextStyle"
                 android:background="@drawable/view_background"
                 app:layout_constraintBottom_toBottomOf="parent"

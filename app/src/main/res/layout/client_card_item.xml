@@ -17,7 +17,7 @@
         app:cardMaxElevation="@dimen/max_elevation"
         android:layout_margin="@dimen/medium_space"
         app:cardPreventCornerOverlap="true"
-        app:cardBackgroundColor="@color/white">
+        app:cardBackgroundColor="@color/cyan_50">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

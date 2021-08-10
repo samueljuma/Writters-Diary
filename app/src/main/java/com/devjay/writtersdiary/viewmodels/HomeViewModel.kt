@@ -33,6 +33,17 @@ class HomeViewModel @Inject constructor(
         _navigateToWriterListFragment.value= null
     }
 
+    // navigate to ClientList Fragment
+    private val _navigateToClientListFragment = MutableLiveData<Boolean?>()
+    val navigateToClientListFragment: LiveData<Boolean?>
+        get() = _navigateToWriterListFragment
+    fun onViewClientsClicked(){
+        _navigateToWriterListFragment.value= true
+    }
+    fun doneNavigatingToClientsFragment(){
+        _navigateToWriterListFragment.value= null
+    }
+
 
 
 }

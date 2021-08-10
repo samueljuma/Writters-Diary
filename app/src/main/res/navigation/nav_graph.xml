@@ -17,6 +17,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_homeFragment_to_clientsFragment"
+            app:destination="@id/clientsFragment" />
     </fragment>
     <fragment
         android:id="@+id/writersFragment"
@@ -34,6 +37,40 @@
     <fragment
         android:id="@+id/addWriterFragment"
         android:name="com.devjay.writtersdiary.ui.AddWriterFragment"
-        android:label="AddWriterFragment"
-        tools:layout="@layout/fragment_add_writer"/>
+        android:label="@string/new_writer"
+        tools:layout="@layout/fragment_add_writer">
+        <action
+            android:id="@+id/action_addWriterFragment_to_writersFragment"
+            app:destination="@id/writersFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/clientsFragment"
+        android:name="com.devjay.writtersdiary.ui.ClientsFragment"
+        android:label="@string/client_fragment_title"
+        tools:layout="@layout/fragment_clients">
+        <action
+            android:id="@+id/action_clientsFragment_to_addClientsFragment2"
+            app:destination="@id/addClientsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addClientsFragment"
+        android:name="com.devjay.writtersdiary.ui.AddClientsFragment"
+        android:label="AddClientsFragment"
+        tools:layout="@layout/fragment_add_clients">
+        <action
+            android:id="@+id/action_addClientsFragment2_to_clientsFragment"
+            app:destination="@id/clientsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 </navigation>

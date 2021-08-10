@@ -4,16 +4,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
-    <LinearLayout
+    <data>
+        <variable
+            name="hasClients"
+            type="boolean" />
+    </data>
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cardview_shadow_end_color"
+        android:background="@color/cardview_shadow_start_color"
         android:orientation="vertical">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/client_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:isGone="@{!hasClients}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/client_card_item"/>
-    </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_writers"
+            android:textColor="@color/black"
+            app:isGone="@{hasClients}"
+            style="@style/mediumTextStyle"
+            android:layout_gravity="center|center_horizontal"
+            />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_baseline_add_24"
+            android:contentDescription="@string/add_writer" />
+    </FrameLayout>
 </layout>

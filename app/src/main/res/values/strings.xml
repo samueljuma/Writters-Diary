@@ -13,4 +13,6 @@
     <string name="home_fragment_title">Home</string>
     <string name="enter_name">Enter First and Last Names</string>
     <string name="add">Add</string>
+    <string name="new_writer">New Writer</string>
+    <string name="client_fragment_title">Clients</string>
 </resources>

@@ -50,6 +50,13 @@ class HomeFragment : Fragment() {
              }
 
         })
+        viewModel.navigateToClientListFragment.observe(viewLifecycleOwner, Observer {
+            if(it==true){
+                this.findNavController().navigate(HomeFragmentDirections
+                    .actionHomeFragmentToClientsFragment())
+                viewModel.doneNavigatingToClientsFragment()
+            }
+        })
 
         return binding.root
     }
