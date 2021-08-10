@@ -1,5 +1,8 @@
 package com.devjay.writtersdiary.viewmodels
 
+import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.devjay.writtersdiary.data.repository.ClientRepository
@@ -15,6 +18,21 @@ class HomeViewModel @Inject constructor(
 
     val clients = clientRepository.getAllClients().asLiveData()
     val writers = writerRepository.getAllWriters().asLiveData()
+
+    /**
+     * NAVIGATION
+     */
+    // navigation to writersList Fragment
+    private val _navigateToWriterListFragment = MutableLiveData<Boolean?>()
+    val navigateToWriterListFragment: LiveData<Boolean?>
+        get() = _navigateToWriterListFragment
+    fun onViewWritersClicked(){
+        _navigateToWriterListFragment.value= true
+    }
+    fun doneNavigatingToWritersFragment(){
+        _navigateToWriterListFragment.value= null
+    }
+
 
 
 }
