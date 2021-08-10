@@ -23,6 +23,8 @@ class AddWriterFragment : Fragment() {
 
         binding = FragmentAddWriterBinding.inflate(inflater,container,false)
 
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
         return binding.root
     }
 }

@@ -28,4 +28,6 @@ class AddWritersOrClientsViewModel @Inject constructor(
             clientRepository.addClientToDatabase(client)
         }
     }
+
+
 }

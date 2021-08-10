@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.devjay.writtersdiary.adpters.WritersListAdapter
 import com.devjay.writtersdiary.databinding.FragmentWritersBinding
 import com.devjay.writtersdiary.viewmodels.WritersListViewModel
@@ -37,6 +39,17 @@ class WritersFragment : Fragment() {
         subscribeUI(adapter,binding)
 
         binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
+        /**
+         * NAVIGATION OBSERVERS
+         */
+        viewModel.navigateToAddWriterFragment.observe(viewLifecycleOwner, Observer {
+            if(it==true){
+                this.findNavController().navigate(WritersFragmentDirections.actionWritersFragmentToAddWriterFragment())
+                viewModel.doneNavigatingToAddWritersFragment()
+            }
+        })
         return binding.root
     }
 
