@@ -104,8 +104,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{()->homeViewModel.onViewWritersClicked()}">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/writersImage"

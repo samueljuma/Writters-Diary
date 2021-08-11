@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.devjay.writtersdiary.data.entities.Writer
 import com.devjay.writtersdiary.databinding.FragmentAddWriterBinding
 import com.devjay.writtersdiary.viewmodels.AddWritersOrClientsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,9 +29,33 @@ class AddWriterFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.addWriterBtn.setOnClickListener{
-            Toast.makeText(requireActivity(),"Writer Added Successfully",Toast.LENGTH_SHORT).show()
-        }
+//        binding.addWriterBtn.setOnClickListener{
+//            val name = binding.writersNameEditText.text.toString()
+//            addWriterAndNavigateBack(name,viewModel)
+//        }
+
+        /**
+         * NAVIGATION OBSERVERS
+         */
+        viewModel.navigateBackToWritersList.observe(viewLifecycleOwner, Observer {
+            if(it==true){
+                val name = binding.writersNameEditText.text.toString()
+                addWriterAndNavigateBack(name,viewModel)
+            }
+        })
         return binding.root
     }
+    //Add Writer and Navigate Back
+    private fun addWriterAndNavigateBack(name: String, viewModel: AddWritersOrClientsViewModel){
+        if(name.isNotBlank()){
+            val writer = Writer(name = name)
+            viewModel.addWriter(writer)
+            Toast.makeText(requireActivity(),"Writer Added Successfully",Toast.LENGTH_SHORT).show()
+            this.findNavController().navigate(AddWriterFragmentDirections.actionAddWriterFragmentToWritersFragment())
+            viewModel.doneNavigatingBackToWritersList()
+        }else{
+            Toast.makeText(requireActivity(),"Enter Writer's Name",Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }

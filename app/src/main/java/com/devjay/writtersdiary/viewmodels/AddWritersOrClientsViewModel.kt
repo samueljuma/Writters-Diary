@@ -1,5 +1,7 @@
 package com.devjay.writtersdiary.viewmodels
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devjay.writtersdiary.data.entities.Client
@@ -27,6 +29,16 @@ class AddWritersOrClientsViewModel @Inject constructor(
         viewModelScope.launch {
             clientRepository.addClientToDatabase(client)
         }
+    }
+
+    private val _navigateBackToWritersList = MutableLiveData<Boolean?>()
+    val navigateBackToWritersList: LiveData<Boolean?>
+        get() = _navigateBackToWritersList
+    fun onAddClicked(){
+        _navigateBackToWritersList.value= true
+    }
+    fun doneNavigatingBackToWritersList(){
+        _navigateBackToWritersList.value= null
     }
 
 
