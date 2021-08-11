@@ -14,9 +14,13 @@ interface ClientTaskDao {
     @Delete
     suspend fun deleteClientTask(clientTask: ClientTask)
 
-    // update clientTask
-    @Query("UPDATE client_tasks_table SET task_status = :status WHERE taskID = :taskID")
-    suspend fun updateClientTask(status: String, taskID: Long)
+    // update clientTask if Complete
+    @Query("UPDATE client_tasks_table SET is_complete = :isComplete WHERE taskID = :taskID")
+    suspend fun updateClientTaskComplete(isComplete: Boolean, taskID: Long)
+
+    // update clientTask if Paid
+    @Query("UPDATE client_tasks_table SET is_paid = :isPaid WHERE taskID = :taskID")
+    suspend fun updateClientTaskPaid(isPaid: Boolean, taskID: Long)
 
     // get a specific clientTask by ID
     @Query("SELECT * FROM client_tasks_table WHERE taskID = :taskId")

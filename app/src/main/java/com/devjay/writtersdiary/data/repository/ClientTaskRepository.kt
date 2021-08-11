@@ -17,8 +17,12 @@ class ClientTaskRepository @Inject constructor(
         clientTaskDao.deleteClientTask(clientTask)
     }
 
-    suspend fun updateClientTaskStatus(status: String, taskId: Long){
-        clientTaskDao.updateClientTask(status,taskId)
+    suspend fun updateClientTaskComplete(isComplete: Boolean, taskId: Long){
+        clientTaskDao.updateClientTaskComplete(isComplete,taskId)
+    }
+
+    suspend fun updateClientTaskPaid(isPaid: Boolean, taskId: Long){
+        clientTaskDao.updateClientTaskPaid(isPaid,taskId)
     }
 
     fun getClientTask(taskId: Long) = clientTaskDao.getClientTask(taskId)

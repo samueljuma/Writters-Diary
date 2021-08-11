@@ -75,15 +75,18 @@ class AppDatabaseTest : TestCase(){
     @Test
     fun testWriterTaskDao () = runBlocking{
 
-        val writerTask = WriterTask(3,3,"234","Assignment",
-            3,300.00,"complete")
+        val writerTask = WriterTask(3,System.currentTimeMillis() ,3,"234","Assignment",
+            3,2,3000.0,false,false)
         // insert
         writerTaskDao.insert(writerTask)
         var writersTasks = writerTaskDao.getAllWritersTasks(3).first()
         assertThat(writerTaskDao.getWriterTask(3).first()).isIn(writersTasks)
         //update
-        writerTaskDao.updateTask("pending",3)
-        assertThat(writerTaskDao.getWriterTask(3).first().status).matches("pending")
+        writerTaskDao.updateTaskPaid(true,3)
+        assertThat(writerTaskDao.getWriterTask(3).first().isPaid).isTrue()
+
+        writerTaskDao.updateTaskComplete(true,3)
+        assertThat(writerTaskDao.getWriterTask(3).first().isComplete).isTrue()
         //delete
         writerTaskDao.deleteWriterTask(writerTaskDao.getWriterTask(3).first())
         writersTasks = writerTaskDao.getAllWritersTasks(3).first()
@@ -93,15 +96,18 @@ class AppDatabaseTest : TestCase(){
     @Test
     fun testClientTaskDao () = runBlocking{
 
-        val clientTask = ClientTask(3,3,"234","Assignment",
-            3,300.00,"complete")
+        val clientTask = ClientTask(3,System.currentTimeMillis(),3,"Assignment",
+            "Business Assignment",3000,2,300.0,false,false)
         // insert
         clientTaskDao.insert(clientTask)
         var clientsTasks = clientTaskDao.getAllClientsTasks(3).first()
         assertThat(clientTaskDao.getClientTask(3).first()).isIn(clientsTasks)
         //update
-        clientTaskDao.updateClientTask("pending",3)
-        assertThat(clientTaskDao.getClientTask(3).first().status).matches("pending")
+        clientTaskDao.updateClientTaskPaid(true,3)
+        assertThat(clientTaskDao.getClientTask(3).first().isPaid).isTrue()
+
+        clientTaskDao.updateClientTaskComplete(true,3)
+        assertThat(clientTaskDao.getClientTask(3).first().isComplete).isTrue()
         //delete
         clientTaskDao.deleteClientTask(clientTaskDao.getClientTask(3).first())
         clientsTasks = clientTaskDao.getAllClientsTasks(3).first()

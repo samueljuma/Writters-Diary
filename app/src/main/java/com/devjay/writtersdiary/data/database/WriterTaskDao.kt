@@ -14,15 +14,19 @@ interface WriterTaskDao {
     @Delete
     suspend fun deleteWriterTask(writerTask: WriterTask)
 
-    // update writerTask
-    @Query("UPDATE writers_tasks_table SET task_status = :status WHERE taskID = :taskID")
-    suspend fun updateTask(status: String, taskID: Long)
+    // update writerTask if complete
+    @Query("UPDATE writers_tasks_table SET is_complete = :isComplete WHERE taskID = :taskID")
+    suspend fun updateTaskComplete(isComplete: Boolean, taskID: Long)
+
+    //update writerTask if paid
+    @Query("UPDATE writers_tasks_table SET is_paid = :isPaid WHERE taskID = :taskID")
+    suspend fun updateTaskPaid(isPaid: Boolean, taskID: Long)
 
     // get a specific writerTask by ID
     @Query("SELECT *FROM writers_tasks_table WHERE taskID = :taskId")
     fun getWriterTask (taskId: Long): Flow<WriterTask>
 
     //get all writer's Tasks
-    @Query("SELECT * FROM writers_tasks_table WHERE writerID_assigned = :assignedBy ORDER BY taskID DESC")
-    fun getAllWritersTasks(assignedBy: Long): Flow<List<WriterTask>>
+    @Query("SELECT * FROM writers_tasks_table WHERE writerID_assigned = :assignedTo ORDER BY taskID DESC")
+    fun getAllWritersTasks(assignedTo: Long): Flow<List<WriterTask>>
 }
