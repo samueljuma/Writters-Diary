@@ -60,7 +60,7 @@
         android:label="@string/client_fragment_title"
         tools:layout="@layout/fragment_clients">
         <action
-            android:id="@+id/action_clientsFragment_to_addClientsFragment2"
+            android:id="@+id/action_clientsFragment_to_addClientsFragment"
             app:destination="@id/addClientsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
@@ -73,7 +73,7 @@
         android:label="AddClientsFragment"
         tools:layout="@layout/fragment_add_clients">
         <action
-            android:id="@+id/action_addClientsFragment2_to_clientsFragment"
+            android:id="@+id/action_addClientsFragment_to_clientsFragment"
             app:destination="@id/clientsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"

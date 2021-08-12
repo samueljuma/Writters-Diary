@@ -34,11 +34,21 @@ class AddWritersOrClientsViewModel @Inject constructor(
     private val _navigateBackToWritersList = MutableLiveData<Boolean?>()
     val navigateBackToWritersList: LiveData<Boolean?>
         get() = _navigateBackToWritersList
-    fun onAddClicked(){
+    fun onAddWriterClicked(){
         _navigateBackToWritersList.value= true
     }
     fun doneNavigatingBackToWritersList(){
         _navigateBackToWritersList.value= null
+    }
+
+    private val _navigateBackToClientsList = MutableLiveData<Boolean?>()
+    val navigateBackToClientsList: LiveData<Boolean?>
+        get() = _navigateBackToClientsList
+    fun onAddClientClicked(){
+        _navigateBackToClientsList.value= true
+    }
+    fun doneNavigatingBackToClientsList(){
+        _navigateBackToClientsList.value= null
     }
 
 

@@ -27,12 +27,7 @@ class AddWriterFragment : Fragment() {
 
         binding = FragmentAddWriterBinding.inflate(inflater,container,false)
 
-        binding.lifecycleOwner = this
         binding.viewModel = viewModel
-//        binding.addWriterBtn.setOnClickListener{
-//            val name = binding.writersNameEditText.text.toString()
-//            addWriterAndNavigateBack(name,viewModel)
-//        }
 
         /**
          * NAVIGATION OBSERVERS

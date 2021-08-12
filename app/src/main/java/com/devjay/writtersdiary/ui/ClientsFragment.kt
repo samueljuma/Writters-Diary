@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.devjay.writtersdiary.R
 import com.devjay.writtersdiary.adpters.ClientsListAdapter
 import com.devjay.writtersdiary.adpters.WritersListAdapter
@@ -35,6 +37,16 @@ class ClientsFragment : Fragment() {
         binding.clientList.adapter=adapter
 
         subscribeUI(adapter,binding)
+
+        binding.viewModel = viewModel
+
+        viewModel.navigateToAddClientFragment.observe(viewLifecycleOwner, Observer {
+            if(it==true){
+                this.findNavController().navigate(ClientsFragmentDirections
+                    .actionClientsFragmentToAddClientsFragment())
+                viewModel.doneNavigatingToAddClientsFragment()
+            }
+        })
 
         return binding.root
     }

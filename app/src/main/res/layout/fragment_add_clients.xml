@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.devjay.writtersdiary.viewmodels.AddWritersOrClientsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,6 +37,7 @@
             android:layout_height="wrap_content"
             android:text="@string/add"
             android:textStyle="bold"
+            android:onClick="@{()->viewModel.onAddClientClicked()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

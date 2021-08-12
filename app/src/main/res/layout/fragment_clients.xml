@@ -8,6 +8,9 @@
         <variable
             name="hasClients"
             type="boolean" />
+        <variable
+            name="viewModel"
+            type="com.devjay.writtersdiary.viewmodels.ClientsListViewModel" />
     </data>
     <FrameLayout
         android:layout_width="match_parent"
@@ -18,8 +21,8 @@
             android:id="@+id/client_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/small_space"
-            android:layout_marginStart="@dimen/small_space"
+            android:layout_marginEnd="@dimen/very_small_space"
+            android:layout_marginStart="@dimen/very_small_space"
             app:isGone="@{!hasClients}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/client_card_item"/>
@@ -37,7 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/wide_space"
+            android:onClick="@{()->viewModel.onFabClicked()}"
             android:src="@drawable/ic_baseline_add_24"
             android:contentDescription="@string/add_writer" />
     </FrameLayout>

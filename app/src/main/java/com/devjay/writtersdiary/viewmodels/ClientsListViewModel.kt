@@ -1,5 +1,7 @@
 package com.devjay.writtersdiary.viewmodels
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.devjay.writtersdiary.data.repository.ClientRepository
@@ -11,4 +13,18 @@ class ClientsListViewModel @Inject constructor(
     private val clientRepository: ClientRepository
 ): ViewModel(){
     val listOfClients = clientRepository.getAllClients().asLiveData()
+
+    /**
+     * NAVIGATION
+     */
+    // navigation to writersList Fragment
+    private val _navigateToAddClientFragment = MutableLiveData<Boolean?>()
+    val navigateToAddClientFragment : LiveData<Boolean?>
+        get() = _navigateToAddClientFragment
+    fun onFabClicked(){
+        _navigateToAddClientFragment.value= true
+    }
+    fun doneNavigatingToAddClientsFragment(){
+        _navigateToAddClientFragment.value= null
+    }
 }
