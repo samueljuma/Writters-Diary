@@ -5,8 +5,8 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.devjay.writtersdiary.data.entities.Client
 import com.devjay.writtersdiary.data.entities.Writer
-import com.devjay.writtersdiary.utils.formatCompleteTasks
-import com.devjay.writtersdiary.utils.formatPendingTasksText
+import com.devjay.writtersdiary.data.entities.WriterTask
+import com.devjay.writtersdiary.utils.*
 
 /**
  * WRITER PROPERTIES
@@ -56,6 +56,60 @@ fun TextView.setClientsCompletedTasks(item: Client?){
  *
  * WRITER_TASK PROPERTIES
  */
+@BindingAdapter("writerTaskTitle")
+fun TextView.setWriterTaskTitle(task: WriterTask?){
+    task?.let {
+        text = task.title
+    }
+}
+@BindingAdapter("writerTaskOrderNo")
+fun TextView.setWriterTaskOrderNo(task: WriterTask?){
+    task?.let {
+        text = formatOrderNumber(task.orderNumber)
+    }
+}
+@BindingAdapter("writerTaskPageCount")
+fun TextView.setWriterTaskPageCount(task: WriterTask?){
+    task?.let {
+        text = task.pageCount.toString()
+    }
+}
+@BindingAdapter("writerTaskWordCount")
+fun TextView.setWriterTaskWordCount(task: WriterTask?){
+    task?.let {
+        text = task.numberOfPagesOrWordCount.toString()
+    }
+}
+@BindingAdapter("writerTaskDateCreated")
+fun TextView.setWriterTaskDateCreated(task: WriterTask?){
+    task?.let {
+        text = formatToDateString(task.time_created)
+    }
+}
+@BindingAdapter("writerTaskTimeCreated")
+fun TextView.setWriterTaskTimeCreated(task: WriterTask?){
+    task?.let {
+        text = formatToTimeString(task.time_created)
+    }
+}
+@BindingAdapter("writerTaskIsPaid")
+fun TextView.setWriterTaskIsPaid(task: WriterTask?){
+    task?.let {
+        text = setIsPaidText(task.isPaid)
+    }
+}
+@BindingAdapter("writerTaskIsComplete")
+fun TextView.setWriterTaskIsComplete(task: WriterTask?){
+    task?.let {
+        text = setIsCompleteText(task.isComplete)
+    }
+}
+@BindingAdapter("writerTaskAmountPayable")
+fun TextView.setWriterTaskAmountPayable(task: WriterTask?){
+    task?.let {
+        text = formatAmountPayable(task.amountPayable)
+    }
+}
 
 /**
  *
