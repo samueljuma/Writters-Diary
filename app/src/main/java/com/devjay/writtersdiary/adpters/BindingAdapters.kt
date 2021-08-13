@@ -8,14 +8,11 @@ import com.devjay.writtersdiary.data.entities.Writer
 import com.devjay.writtersdiary.utils.formatCompleteTasks
 import com.devjay.writtersdiary.utils.formatPendingTasksText
 
+/**
+ * WRITER PROPERTIES
+ */
 @BindingAdapter("writersName")
 fun TextView.setWriterName(item: Writer?){
-    item?.let {
-        text = item.name
-    }
-}
-@BindingAdapter("clientsName")
-fun TextView.setClientName(item: Client?){
     item?.let {
         text = item.name
     }
@@ -33,7 +30,16 @@ fun TextView.setWritersCompletedTasks(item: Writer?){
         text = formatCompleteTasks(item.completedTasks)
     }
 }
-
+/**
+ *
+ * CLIENT PROPERTIES
+ */
+@BindingAdapter("clientsName")
+fun TextView.setClientName(item: Client?){
+    item?.let {
+        text = item.name
+    }
+}
 @BindingAdapter("clientsPendingTasks")
 fun TextView.setClientsPendingTasks(item: Client?){
     item?.let {
@@ -46,7 +52,19 @@ fun TextView.setClientsCompletedTasks(item: Client?){
         text = formatCompleteTasks(item.completedTasks)
     }
 }
+/**
+ *
+ * WRITER_TASK PROPERTIES
+ */
 
+/**
+ *
+ * CLIENT_TASK PROPERTIES
+ */
+
+/**
+ * OTHER BINDING ADAPTERS
+ */
 @BindingAdapter("isGone")
 fun bindIsGone(view: View, isGone: Boolean) {
     view.visibility = if (isGone) {

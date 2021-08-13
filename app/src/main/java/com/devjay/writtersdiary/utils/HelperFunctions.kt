@@ -1,4 +1,17 @@
 package com.devjay.writtersdiary.utils
 
-class HelperFunctions {
+fun setIsPaidText(value: Boolean): String{
+    return if(value){
+        "Not Paid"
+    }else {
+        "Paid"
+    }
+}
+
+fun setIsCompleteText(value: Boolean): String{
+    return if(value){
+        "Not Paid"
+    }else {
+        "Paid"
+    }
 }
