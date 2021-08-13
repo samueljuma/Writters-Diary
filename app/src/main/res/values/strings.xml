@@ -25,4 +25,5 @@
     <string name="edit_icon">edit_icon</string>
     <string name="writer_has_no_tasks">Writer has No tasks</string>
     <string name="add_task">Add Task</string>
+    <string name="no_client_tasks">You have no tasks from this Client</string>
 </resources>
