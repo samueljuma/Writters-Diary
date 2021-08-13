@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-
+        <variable
+            name="writerTask"
+            type="com.devjay.writtersdiary.data.entities.WriterTask" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -25,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                app:writerTaskTitle="@{writerTask}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.05"
@@ -64,6 +67,7 @@
                     android:background="@drawable/gray_800_round_corner_background"
                     android:textColor="@color/white"
                     android:textStyle="bold"
+                    app:writerTaskPageCount="@{writerTask}"
                     app:layout_constraintBottom_toBottomOf="@+id/point_to_pages"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -91,6 +95,7 @@
                     android:background="@drawable/gray_800_round_corner_background"
                     android:textColor="@color/white"
                     android:textStyle="bold"
+                    app:writerTaskWordCount="@{writerTask}"
                     app:layout_constraintBottom_toBottomOf="@+id/point_to_words"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -119,6 +124,7 @@
                     android:background="@drawable/gray_800_round_corner_background"
                     android:textColor="@color/white"
                     android:textStyle="bold"
+                    app:writerTaskIsPaid="@{writerTask}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/is_complete_text"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -132,6 +138,7 @@
                     android:background="@drawable/gray_800_round_corner_background"
                     android:textColor="@color/white"
                     android:textStyle="bold"
+                    app:writerTaskIsComplete="@{writerTask}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/is_paid_text"
                     app:layout_constraintHorizontal_bias="0.9"
@@ -146,6 +153,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
+                app:writerTaskOrderNo="@{writerTask}"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.05"
@@ -159,6 +167,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray_200"
+                app:writerTaskDateCreated="@{writerTask}"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -173,6 +182,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                app:writerTaskTimeCreated="@{writerTask}"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/date_created"
@@ -187,6 +197,7 @@
                 android:background="@drawable/gray_round_corner_background"
                 android:textColor="@color/black"
                 android:textStyle="bold"
+                app:writerTaskAmountPayable="@{writerTask}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
