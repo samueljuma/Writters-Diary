@@ -23,4 +23,6 @@
     <string name="status">Status</string>
     <string name="delete">delete</string>
     <string name="edit_icon">edit_icon</string>
+    <string name="writer_has_no_tasks">Writer has No tasks</string>
+    <string name="add_task">Add Task</string>
 </resources>
