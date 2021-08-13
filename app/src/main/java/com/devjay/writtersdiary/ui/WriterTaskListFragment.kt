@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.devjay.writtersdiary.adpters.WriterTaskListAdapter
+import com.devjay.writtersdiary.adpters.WritersListAdapter
 import com.devjay.writtersdiary.databinding.FragmentWriterTaskListBinding
+import com.devjay.writtersdiary.databinding.FragmentWritersBinding
 import com.devjay.writtersdiary.viewmodels.WriterTaskListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +26,21 @@ class WriterTaskListFragment : Fragment() {
     ): View? {
         binding = FragmentWriterTaskListBinding.inflate(inflater, container, false)
 
+        val adapter = WriterTaskListAdapter()
+
+        binding.writerTasksList.adapter
+        binding.viewModel = viewModel
+
+        subscribeUI(adapter,binding,1)
+
         return binding.root
+    }
+
+    private fun subscribeUI(adapter: WriterTaskListAdapter, binding: FragmentWriterTaskListBinding, writerId: Long){
+        viewModel.getAllWriterTasks(writerId).observe(viewLifecycleOwner){ result ->
+            binding.hasTasks = !result.isNullOrEmpty()
+            adapter.submitList(result)
+        }
     }
 
 }

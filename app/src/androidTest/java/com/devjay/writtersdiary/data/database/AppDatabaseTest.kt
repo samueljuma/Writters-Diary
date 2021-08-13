@@ -1,6 +1,5 @@
 package com.devjay.writtersdiary.data.database
 
-import androidx.lifecycle.asFlow
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -9,10 +8,8 @@ import com.devjay.writtersdiary.data.entities.ClientTask
 import com.devjay.writtersdiary.data.entities.Writer
 import com.devjay.writtersdiary.data.entities.WriterTask
 import junit.framework.TestCase
-import com.google.common.truth.Truth.assertThat;
+import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.flow.toSet
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
@@ -42,7 +39,7 @@ class AppDatabaseTest : TestCase(){
     @Test
     fun testWriterDao () = runBlocking{
 
-        val writer = Writer(2,"juma",3,2);
+        val writer = Writer(2,"juma",3,2)
         writerDao.insert(writer)
         var writers = writerDao.getAllWriters().first()
 
@@ -57,7 +54,7 @@ class AppDatabaseTest : TestCase(){
     @Test
     fun testClientDao () = runBlocking{
 
-        val client = Client(2,"juma",3,2);
+        val client = Client(2,"juma",3,2)
         clientDao.insert(client)
         var clients = clientDao.getAllClients().first()
 
