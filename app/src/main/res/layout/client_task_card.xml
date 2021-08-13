@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/medium_space"
-        android:layout_margin="@dimen/very_small_space"
+        android:layout_marginTop="@dimen/very_small_space"
         app:cardBackgroundColor="@color/gray_500">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -111,9 +111,8 @@
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.8"
-                    app:layout_constraintStart_toEndOf="@+id/page_count"
+                    app:layout_constraintEnd_toEndOf="@+id/is_paid_text"
+                    app:layout_constraintStart_toStartOf="@+id/is_complete_text"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.039" />
 
@@ -141,7 +140,7 @@
                     app:clientTaskIsComplete="@{clientTask}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/is_paid_text"
-                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintHorizontal_bias="0.96"
                     app:layout_constraintStart_toEndOf="@+id/page_count"
                     app:layout_constraintTop_toBottomOf="@+id/textView16"
                     tools:text="Pending" />

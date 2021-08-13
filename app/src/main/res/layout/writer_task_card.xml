@@ -110,12 +110,11 @@
                     android:text="@string/status"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.8"
-                    app:layout_constraintStart_toEndOf="@+id/page_count"
+                    app:layout_constraintBottom_toTopOf="@+id/is_paid_text"
+                    app:layout_constraintEnd_toEndOf="@+id/is_paid_text"
+                    app:layout_constraintStart_toStartOf="@+id/is_complete_text"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.039" />
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/is_paid_text"
@@ -124,11 +123,11 @@
                     android:background="@drawable/gray_800_round_corner_background"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    app:writerTaskIsPaid="@{writerTask}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/is_complete_text"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/page_count"
+                    app:writerTaskIsPaid="@{writerTask}"
                     tools:text="Not Paid" />
 
                 <TextView
@@ -138,12 +137,12 @@
                     android:background="@drawable/gray_800_round_corner_background"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    app:writerTaskIsComplete="@{writerTask}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/is_paid_text"
-                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintHorizontal_bias="0.97"
                     app:layout_constraintStart_toEndOf="@+id/page_count"
                     app:layout_constraintTop_toBottomOf="@+id/textView16"
+                    app:writerTaskIsComplete="@{writerTask}"
                     tools:text="Pending" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,8 +10,8 @@ fun setIsPaidText(value: Boolean): String{
 
 fun setIsCompleteText(value: Boolean): String{
     return if(value){
-        "Not Paid"
+        "Pending"
     }else {
-        "Paid"
+        "Complete"
     }
 }
