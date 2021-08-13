@@ -38,6 +38,13 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_writersFragment_to_writerTaskListFragment"
+            app:destination="@id/writerTaskListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/addWriterFragment"
@@ -66,6 +73,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_clientsFragment_to_clientTaskListFragment"
+            app:destination="@id/clientTaskListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/addClientsFragment"
@@ -82,4 +96,14 @@
             app:popUpTo="@id/clientsFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/writerTaskListFragment"
+        android:name="com.devjay.writtersdiary.ui.WriterTaskListFragment"
+        android:label="WriterTaskListFragment"
+        tools:layout="@layout/fragment_writer_task_list"/>
+    <fragment
+        android:id="@+id/clientTaskListFragment"
+        android:name="com.devjay.writtersdiary.ui.ClientTaskListFragment"
+        android:label="ClientTaskListFragment"
+        tools:layout="@layout/fragment_client_task_list"/>
 </navigation>
