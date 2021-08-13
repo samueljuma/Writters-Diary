@@ -8,11 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.devjay.writtersdiary.R
 import com.devjay.writtersdiary.adpters.ClientsListAdapter
-import com.devjay.writtersdiary.adpters.WritersListAdapter
 import com.devjay.writtersdiary.databinding.FragmentClientsBinding
-import com.devjay.writtersdiary.databinding.FragmentWritersBinding
 import com.devjay.writtersdiary.viewmodels.ClientsListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

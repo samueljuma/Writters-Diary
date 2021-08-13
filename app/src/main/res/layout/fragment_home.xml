@@ -13,6 +13,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.HomeFragment"
     android:orientation="vertical"
+    android:layout_marginStart="@dimen/very_small_space"
+    android:layout_marginEnd="@dimen/very_small_space"
     android:background="@color/cardview_shadow_end_color"
     >
     <androidx.cardview.widget.CardView
@@ -22,7 +24,7 @@
         app:cardCornerRadius="@dimen/wide_space"
         app:cardElevation="@dimen/medium_space"
         app:cardMaxElevation="@dimen/max_elevation"
-        android:layout_margin="@dimen/medium_space"
+        android:layout_marginTop="@dimen/very_small_space"
         app:cardPreventCornerOverlap="true">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -100,7 +102,7 @@
         app:cardElevation="@dimen/medium_space"
         app:cardMaxElevation="@dimen/max_elevation"
         app:cardPreventCornerOverlap="true"
-        android:layout_margin="@dimen/medium_space">
+        android:layout_marginTop="@dimen/very_small_space">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
