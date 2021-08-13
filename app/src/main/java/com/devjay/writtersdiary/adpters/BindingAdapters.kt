@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.devjay.writtersdiary.data.entities.Client
+import com.devjay.writtersdiary.data.entities.ClientTask
 import com.devjay.writtersdiary.data.entities.Writer
 import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.utils.*
@@ -115,7 +116,60 @@ fun TextView.setWriterTaskAmountPayable(task: WriterTask?){
  *
  * CLIENT_TASK PROPERTIES
  */
-
+@BindingAdapter("clientTaskTitle")
+fun TextView.setClientTaskTitle(task: ClientTask?){
+    task?.let {
+        text = task.title
+    }
+}
+@BindingAdapter("clientTaskOrderNo")
+fun TextView.setClientTaskOrderNo(task: ClientTask?){
+    task?.let {
+        text = formatOrderNumber(task.orderNumber)
+    }
+}
+@BindingAdapter("clientTaskPageCount")
+fun TextView.setClientTaskPageCount(task: ClientTask?){
+    task?.let {
+        text = task.pageCount.toString()
+    }
+}
+@BindingAdapter("clientTaskWordCount")
+fun TextView.setClientTaskWordCount(task: ClientTask?){
+    task?.let {
+        text = task.numberOfPagesOrWordCount.toString()
+    }
+}
+@BindingAdapter("clientTaskDateCreated")
+fun TextView.setClientTaskDateCreated(task: ClientTask?){
+    task?.let {
+        text = formatToDateString(task.time_created)
+    }
+}
+@BindingAdapter("clientTaskTimeCreated")
+fun TextView.setClientTaskTimeCreated(task: ClientTask?){
+    task?.let {
+        text = formatToTimeString(task.time_created)
+    }
+}
+@BindingAdapter("clientTaskIsPaid")
+fun TextView.setClientTaskIsPaid(task: ClientTask?){
+    task?.let {
+        text = setIsPaidText(task.isPaid)
+    }
+}
+@BindingAdapter("clientTaskIsComplete")
+fun TextView.setClientTaskIsComplete(task: ClientTask?){
+    task?.let {
+        text = setIsCompleteText(task.isComplete)
+    }
+}
+@BindingAdapter("clientTaskAmountPayable")
+fun TextView.setClientTaskAmountPayable(task: ClientTask?){
+    task?.let {
+        text = formatAmountPayable(task.amountPayable)
+    }
+}
 /**
  * OTHER BINDING ADAPTERS
  */
