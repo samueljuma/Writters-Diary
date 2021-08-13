@@ -27,6 +27,7 @@ class ClientTaskListFragment : Fragment() {
         binding = FragmentClientTaskListBinding.inflate(inflater,container,false)
 
         val adapter = ClientTaskListAdapter()
+        binding.clientTasksList.adapter =adapter
         binding.viewModel = viewModel
 
         subscribeUI(adapter,binding,1)

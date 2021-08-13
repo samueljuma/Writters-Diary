@@ -28,7 +28,7 @@ class WriterTaskListFragment : Fragment() {
 
         val adapter = WriterTaskListAdapter()
 
-        binding.writerTasksList.adapter
+        binding.writerTasksList.adapter = adapter
         binding.viewModel = viewModel
 
         subscribeUI(adapter,binding,1)
