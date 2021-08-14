@@ -28,10 +28,13 @@ class WriterTaskListFragment : Fragment() {
 
         val adapter = WriterTaskListAdapter()
 
+        val arguments = WriterTaskListFragmentArgs.fromBundle(requireArguments())
+        val writerId = arguments.writerID
+
         binding.writerTasksList.adapter = adapter
         binding.viewModel = viewModel
 
-        subscribeUI(adapter,binding,1)
+        subscribeUI(adapter,binding,writerId)
 
         return binding.root
     }
