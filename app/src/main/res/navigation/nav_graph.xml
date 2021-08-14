@@ -104,6 +104,13 @@
         <argument
             android:name="writerID"
             app:argType="long" />
+        <action
+            android:id="@+id/action_writerTaskListFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/clientTaskListFragment"
@@ -114,4 +121,9 @@
             android:name="clientId"
             app:argType="long" />
     </fragment>
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.devjay.writtersdiary.ui.AddTaskFragment"
+        android:label="AddTaskFragment"
+        tools:layout="@layout/fragment_add_task"/>
 </navigation>
