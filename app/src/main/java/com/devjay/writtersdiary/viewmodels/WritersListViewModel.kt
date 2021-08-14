@@ -27,4 +27,14 @@ class WritersListViewModel @Inject constructor(
     fun doneNavigatingToAddWritersFragment(){
         _navigateToAddWriterFragment.value= null
     }
+
+    private val _navigateToWriterTasks = MutableLiveData<Long?>()
+    val navigateToWriterTasks: LiveData<Long?>
+        get() = _navigateToWriterTasks
+    fun onViewWriterClicked(Id: Long) {
+        _navigateToWriterTasks.value = Id
+    }
+    fun doneNavigatingToWriterTasks(){
+        _navigateToWriterTasks.value =null
+    }
 }

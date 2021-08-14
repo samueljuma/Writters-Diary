@@ -9,20 +9,21 @@ import com.devjay.writtersdiary.data.entities.Writer
 import com.devjay.writtersdiary.databinding.FragmentWritersBinding
 import com.devjay.writtersdiary.databinding.WriterCardItemBinding
 
-class WritersListAdapter: ListAdapter<Writer, WritersListAdapter.ViewHolder>(WriterDiffCallback()) {
+class WritersListAdapter(val clickListener: WriterListener): ListAdapter<Writer, WritersListAdapter.ViewHolder>(WriterDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position)!!)
+        holder.bind(getItem(position)!!,clickListener)
     }
 
     // viewHolder
     class ViewHolder (val binding: WriterCardItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind (item: Writer){
+        fun bind (item: Writer, clickListener: WriterListener){
             binding.writer = item
+            binding.clickListener =clickListener
             binding.executePendingBindings()
         }
         companion object{
@@ -47,4 +48,7 @@ class WritersListAdapter: ListAdapter<Writer, WritersListAdapter.ViewHolder>(Wri
 
 }
 
+class WriterListener (val clickListener: (writerId: Long) -> Unit){
+    fun onClick(writer: Writer) = clickListener(writer.writerID)
+}
 

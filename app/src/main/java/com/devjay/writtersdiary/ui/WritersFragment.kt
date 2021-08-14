@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.devjay.writtersdiary.adpters.WriterListener
 import com.devjay.writtersdiary.adpters.WritersListAdapter
 import com.devjay.writtersdiary.databinding.FragmentWritersBinding
 import com.devjay.writtersdiary.viewmodels.WritersListViewModel
@@ -32,14 +33,14 @@ class WritersFragment : Fragment() {
     ): View? {
         binding = FragmentWritersBinding.inflate(inflater,container,false)
 
-        val adapter = WritersListAdapter()
+        binding.viewModel = viewModel
+        val adapter = WritersListAdapter(WriterListener {
+            writerId ->  viewModel.onViewWriterClicked(writerId)
+        })
         binding.writersList.adapter =adapter
 
         // handle recyclerview
         subscribeUI(adapter,binding)
-
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
 
         /**
          * NAVIGATION OBSERVERS
@@ -49,6 +50,15 @@ class WritersFragment : Fragment() {
                 this.findNavController().navigate(WritersFragmentDirections.actionWritersFragmentToAddWriterFragment())
                 viewModel.doneNavigatingToAddWritersFragment()
             }
+        })
+
+        viewModel.navigateToWriterTasks.observe(viewLifecycleOwner, Observer { writer->
+            writer?.let {
+                this.findNavController().navigate(WritersFragmentDirections
+                    .actionWritersFragmentToWriterTaskListFragment(writer))
+                viewModel.doneNavigatingToWriterTasks()
+            }
+
         })
         return binding.root
     }

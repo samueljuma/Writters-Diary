@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/clientTaskListFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -100,7 +100,11 @@
         android:id="@+id/writerTaskListFragment"
         android:name="com.devjay.writtersdiary.ui.WriterTaskListFragment"
         android:label="WriterTaskListFragment"
-        tools:layout="@layout/fragment_writer_task_list"/>
+        tools:layout="@layout/fragment_writer_task_list">
+        <argument
+            android:name="writerID"
+            app:argType="long" />
+    </fragment>
     <fragment
         android:id="@+id/clientTaskListFragment"
         android:name="com.devjay.writtersdiary.ui.ClientTaskListFragment"
