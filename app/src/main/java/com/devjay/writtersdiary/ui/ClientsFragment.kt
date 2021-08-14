@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.devjay.writtersdiary.adpters.ClientListener
 import com.devjay.writtersdiary.adpters.ClientsListAdapter
+import com.devjay.writtersdiary.adpters.WriterListener
 import com.devjay.writtersdiary.databinding.FragmentClientsBinding
 import com.devjay.writtersdiary.viewmodels.ClientsListViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,19 +32,33 @@ class ClientsFragment : Fragment() {
     ): View? {
         binding = FragmentClientsBinding.inflate(inflater,container,false)
 
-        val adapter = ClientsListAdapter()
+        val adapter = ClientsListAdapter(ClientListener {
+                clientId ->  viewModel.onViewClientTasksClicked(clientId)
+        })
         binding.clientList.adapter=adapter
 
         subscribeUI(adapter,binding)
 
         binding.viewModel = viewModel
 
+        /**
+         * Navigation Observers
+         */
         viewModel.navigateToAddClientFragment.observe(viewLifecycleOwner, Observer {
             if(it==true){
                 this.findNavController().navigate(ClientsFragmentDirections
                     .actionClientsFragmentToAddClientsFragment())
                 viewModel.doneNavigatingToAddClientsFragment()
             }
+        })
+
+        viewModel.navigateToClientTasks.observe(viewLifecycleOwner, Observer { client->
+            client?.let {
+                this.findNavController().navigate(ClientsFragmentDirections
+                    .actionClientsFragmentToClientTaskListFragment(client))
+                viewModel.doneNavigatingToClientTasks()
+            }
+
         })
 
         return binding.root

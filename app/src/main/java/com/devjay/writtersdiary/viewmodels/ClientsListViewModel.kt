@@ -27,4 +27,14 @@ class ClientsListViewModel @Inject constructor(
     fun doneNavigatingToAddClientsFragment(){
         _navigateToAddClientFragment.value= null
     }
+
+    private val _navigateToClientTasks = MutableLiveData<Long?>()
+    val navigateToClientTasks: LiveData<Long?>
+        get() = _navigateToClientTasks
+    fun onViewClientTasksClicked(Id: Long) {
+        _navigateToClientTasks.value = Id
+    }
+    fun doneNavigatingToClientTasks(){
+        _navigateToClientTasks.value =null
+    }
 }

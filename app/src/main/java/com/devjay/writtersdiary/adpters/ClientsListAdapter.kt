@@ -6,22 +6,24 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devjay.writtersdiary.data.entities.Client
+import com.devjay.writtersdiary.data.entities.Writer
 import com.devjay.writtersdiary.databinding.ClientCardItemBinding
 
-class ClientsListAdapter: ListAdapter<Client, ClientsListAdapter.ViewHolder>(ClientDiffCallback()) {
+class ClientsListAdapter(val clickListener: ClientListener): ListAdapter<Client, ClientsListAdapter.ViewHolder>(ClientDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position)!!)
+        holder.bind(getItem(position)!!,clickListener)
     }
 
     // viewHolder
     class ViewHolder (val binding: ClientCardItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind (item: Client){
+        fun bind (item: Client, clickListener:ClientListener){
             binding.client = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
         companion object{
@@ -44,6 +46,9 @@ class ClientsListAdapter: ListAdapter<Client, ClientsListAdapter.ViewHolder>(Cli
 
     }
 
+}
+class ClientListener (val clickListener: (clientId: Long) -> Unit){
+    fun onClick(client: Client) = clickListener(client.clientID)
 }
 
 

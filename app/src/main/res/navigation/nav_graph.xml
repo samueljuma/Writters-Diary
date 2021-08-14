@@ -109,5 +109,9 @@
         android:id="@+id/clientTaskListFragment"
         android:name="com.devjay.writtersdiary.ui.ClientTaskListFragment"
         android:label="ClientTaskListFragment"
-        tools:layout="@layout/fragment_client_task_list"/>
+        tools:layout="@layout/fragment_client_task_list">
+        <argument
+            android:name="clientId"
+            app:argType="long" />
+    </fragment>
 </navigation>

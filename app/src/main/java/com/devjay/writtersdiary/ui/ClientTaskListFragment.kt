@@ -27,10 +27,14 @@ class ClientTaskListFragment : Fragment() {
         binding = FragmentClientTaskListBinding.inflate(inflater,container,false)
 
         val adapter = ClientTaskListAdapter()
+
         binding.clientTasksList.adapter =adapter
         binding.viewModel = viewModel
 
-        subscribeUI(adapter,binding,1)
+        val arguments = ClientTaskListFragmentArgs.fromBundle(requireArguments())
+        val clientId = arguments.clientId
+
+        subscribeUI(adapter,binding,clientId)
         return binding.root
     }
 
