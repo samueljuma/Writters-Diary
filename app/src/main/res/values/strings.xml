@@ -26,4 +26,11 @@
     <string name="writer_has_no_tasks">Writer has No tasks</string>
     <string name="add_task">Add Task</string>
     <string name="no_client_tasks">You have no tasks from this Client</string>
+    <string name="task_title_label">Task Title</string>
+    <string name="enter_task_title">Business Assignment</string>
+    <string name="order_label">Order Number</string>
+    <string name="enter_order_number">BSL201</string>
+    <string name="word_count">Word Count</string>
+    <string name="enter_word_count">3000</string>
+    <string name="submit">Submit</string>
 </resources>
