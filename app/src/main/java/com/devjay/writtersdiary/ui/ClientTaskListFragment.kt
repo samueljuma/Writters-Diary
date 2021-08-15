@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.devjay.writtersdiary.R
 import com.devjay.writtersdiary.adpters.ClientTaskListAdapter
 import com.devjay.writtersdiary.adpters.WriterTaskListAdapter
@@ -35,6 +36,14 @@ class ClientTaskListFragment : Fragment() {
         val clientId = arguments.clientId
 
         subscribeUI(adapter,binding,clientId)
+
+        viewModel.navigateToAddClientTask.observe(viewLifecycleOwner,{
+            if(it==true){
+                this.findNavController().navigate(ClientTaskListFragmentDirections
+                    .actionClientTaskListFragmentToAddClientTaskFragment())
+                viewModel.doneNavigatingToAddTasks()
+            }
+        })
         return binding.root
     }
 

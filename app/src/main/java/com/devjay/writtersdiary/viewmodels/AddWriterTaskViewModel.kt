@@ -1,5 +1,7 @@
 package com.devjay.writtersdiary.viewmodels
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devjay.writtersdiary.data.entities.ClientTask
@@ -11,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddTaskViewModel @Inject constructor(
+class AddWriterTaskViewModel @Inject constructor(
     private val writerTaskRepository: WriterTaskRepository,
     private val clientTaskRepository: ClientTaskRepository
 ): ViewModel(){

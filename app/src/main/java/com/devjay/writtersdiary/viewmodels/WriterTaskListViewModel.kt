@@ -1,6 +1,7 @@
 package com.devjay.writtersdiary.viewmodels
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.devjay.writtersdiary.data.entities.WriterTask
@@ -15,5 +16,15 @@ class WriterTaskListViewModel @Inject constructor(
 
     fun getAllWriterTasks(writerId: Long): LiveData<List<WriterTask>>{
         return writerTaskRepository.getAllWritersTasks(writerId).asLiveData()
+    }
+
+    private val _navigateToAddWriterTask = MutableLiveData<Boolean?>()
+    val navigateToAddWriterTask: LiveData<Boolean?>
+        get() = _navigateToAddWriterTask
+    fun onAddFabClicked() {
+        _navigateToAddWriterTask.value = true
+    }
+    fun doneNavigatingToAddTasks(){
+        _navigateToAddWriterTask.value =null
     }
 }

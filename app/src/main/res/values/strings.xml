@@ -33,4 +33,6 @@
     <string name="word_count">Word Count</string>
     <string name="enter_word_count">3000</string>
     <string name="submit">Submit</string>
+    <string name="new_task_to_writer">New Writer Task</string>
+    <string name="client_tasks_fragment_title">Client Tasks</string>
 </resources>

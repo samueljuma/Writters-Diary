@@ -105,8 +105,8 @@
             android:name="writerID"
             app:argType="long" />
         <action
-            android:id="@+id/action_writerTaskListFragment_to_addTaskFragment"
-            app:destination="@id/addTaskFragment"
+            android:id="@+id/action_writerTaskListFragment_to_addWriterTaskFragment"
+            app:destination="@id/addWriterTaskFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -115,15 +115,32 @@
     <fragment
         android:id="@+id/clientTaskListFragment"
         android:name="com.devjay.writtersdiary.ui.ClientTaskListFragment"
-        android:label="ClientTaskListFragment"
+        android:label="@string/client_tasks_fragment_title"
         tools:layout="@layout/fragment_client_task_list">
         <argument
             android:name="clientId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_clientTaskListFragment_to_addClientTaskFragment"
+            app:destination="@id/addClientTaskFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
-        android:id="@+id/addTaskFragment"
-        android:name="com.devjay.writtersdiary.ui.AddTaskFragment"
-        android:label="AddTaskFragment"
-        tools:layout="@layout/fragment_add_task"/>
+        android:id="@+id/addWriterTaskFragment"
+        android:name="com.devjay.writtersdiary.ui.AddWriterTaskFragment"
+        android:label="@string/new_task_to_writer"
+        tools:layout="@layout/fragment_add_writer_task">
+        <argument
+            android:name="isAddWriter"
+            app:argType="boolean"
+            android:defaultValue="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/addClientTaskFragment"
+        android:name="com.devjay.writtersdiary.ui.AddClientTaskFragment"
+        android:label="AddClientTaskFragment"
+        tools:layout="@layout/fragment_add_client_task"/>
 </navigation>

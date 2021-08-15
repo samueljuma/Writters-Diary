@@ -6,10 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.devjay.writtersdiary.adpters.WriterTaskListAdapter
-import com.devjay.writtersdiary.adpters.WritersListAdapter
 import com.devjay.writtersdiary.databinding.FragmentWriterTaskListBinding
-import com.devjay.writtersdiary.databinding.FragmentWritersBinding
 import com.devjay.writtersdiary.viewmodels.WriterTaskListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,6 +34,17 @@ class WriterTaskListFragment : Fragment() {
         binding.viewModel = viewModel
 
         subscribeUI(adapter,binding,writerId)
+
+        /**
+         * NAVIGATION OBSERVERS
+         */
+        viewModel.navigateToAddWriterTask.observe(viewLifecycleOwner, {
+            if(it ==true){
+                this.findNavController().navigate(WriterTaskListFragmentDirections
+                    .actionWriterTaskListFragmentToAddWriterTaskFragment())
+                viewModel.doneNavigatingToAddTasks()
+            }
+        })
 
         return binding.root
     }
