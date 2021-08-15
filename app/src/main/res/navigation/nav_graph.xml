@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/updateWriterTaskFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -111,6 +111,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_writerTaskListFragment_to_updateWriterTaskFragment"
+            app:destination="@id/updateWriterTaskFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/clientTaskListFragment"
@@ -123,6 +130,13 @@
         <action
             android:id="@+id/action_clientTaskListFragment_to_addClientTaskFragment"
             app:destination="@id/addClientTaskFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_clientTaskListFragment_to_updateClientTaskFragment"
+            app:destination="@id/updateClientTaskFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -168,5 +182,30 @@
         android:id="@+id/updateWriterTaskFragment"
         android:name="com.devjay.writtersdiary.ui.UpdateWriterTaskFragment"
         android:label="UpdateWriterTaskFragment"
-        tools:layout="@layout/fragment_update_writer_task"/>
+        tools:layout="@layout/fragment_update_writer_task">
+        <action
+            android:id="@+id/action_updateWriterTaskFragment_to_writerTaskListFragment"
+            app:destination="@id/writerTaskListFragment"
+            app:popUpTo="@id/writerTaskListFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/updateClientTaskFragment"
+        android:name="com.devjay.writtersdiary.ui.UpdateClientTaskFragment"
+        android:label="UpdateClientTaskFragment"
+        tools:layout="@layout/fragment_update_client_task">
+        <action
+            android:id="@+id/action_updateClientTaskFragment_to_clientTaskListFragment"
+            app:destination="@id/clientTaskListFragment"
+            app:popUpTo="@id/clientTaskListFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 </navigation>
