@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.devjay.writtersdiary.data.entities.Writer
 import com.devjay.writtersdiary.databinding.FragmentAddWriterTaskBinding
 import com.devjay.writtersdiary.viewmodels.AddTaskViewModel
-import com.devjay.writtersdiary.viewmodels.AddWritersOrClientsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,24 +26,28 @@ class AddWriterTaskFragment : Fragment() {
 
         binding.viewModel =viewModel
 
-//        binding.submitBtn.setOnClickListener{
-//            val toast =Toast.makeText(requireActivity(),"Enter Writer's Name", Toast.LENGTH_SHORT)
-//            toast.show()
-//        }
+        val args = AddWriterTaskFragmentArgs.fromBundle(requireArguments())
+        val writerId:Long = args.writerId
         viewModel.addTaskAndNavigateBackToWriterTaskList.observe(viewLifecycleOwner,{
             if (it==true){
-                val writerId: Long =1;
-                val title = binding.taskTileEditText.text.toString()
-                val orderNo = binding.orderNumberEditText.text.toString()
-                val wordCount = binding.wordCountEditText.text.toString().toInt()
-                val amount = binding.amountPayableEditText.text.toString().toDouble()
-                viewModel.addWriterTask(writerId,title,orderNo,wordCount,amount)
-                Toast.makeText(requireActivity(),"Task Added",Toast.LENGTH_SHORT).show()
-
+                addWriterTaskToDatabase(writerId)
+                this.findNavController().navigate(AddWriterTaskFragmentDirections
+                    .actionAddWriterTaskFragmentToWriterTaskListFragment(writerId))
+                viewModel.doneNavigatingBackToWriterTaskList()
             }
         })
 
+
         return binding.root
+    }
+
+    private fun addWriterTaskToDatabase(writerId: Long) {
+        val title = binding.taskTileEditText.text.toString()
+        val orderNo = binding.orderNumberEditText.text.toString()
+        val wordCount = binding.wordCountEditText.text.toString().toInt()
+        val amount = binding.amountPayableEditText.text.toString().toDouble()
+        viewModel.addWriterTask(writerId, title, orderNo, wordCount, amount)
+        Toast.makeText(requireActivity(), "Task Added", Toast.LENGTH_SHORT).show()
     }
 
 }

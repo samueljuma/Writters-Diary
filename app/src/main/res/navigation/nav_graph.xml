@@ -133,14 +133,32 @@
         android:name="com.devjay.writtersdiary.ui.AddWriterTaskFragment"
         android:label="@string/new_task_to_writer"
         tools:layout="@layout/fragment_add_writer_task">
+        <action
+            android:id="@+id/action_addWriterTaskFragment_to_writerTaskListFragment"
+            app:destination="@id/writerTaskListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/writerTaskListFragment"
+            app:popUpToInclusive="true" />
         <argument
-            android:name="isAddWriter"
-            app:argType="boolean"
-            android:defaultValue="true" />
+            android:name="writerId"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/addClientTaskFragment"
         android:name="com.devjay.writtersdiary.ui.AddClientTaskFragment"
         android:label="AddClientTaskFragment"
-        tools:layout="@layout/fragment_add_client_task"/>
+        tools:layout="@layout/fragment_add_client_task">
+        <action
+            android:id="@+id/action_addClientTaskFragment_to_clientTaskListFragment"
+            app:destination="@id/clientTaskListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/clientTaskListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

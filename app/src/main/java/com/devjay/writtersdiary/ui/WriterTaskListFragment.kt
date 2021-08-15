@@ -41,7 +41,7 @@ class WriterTaskListFragment : Fragment() {
         viewModel.navigateToAddWriterTask.observe(viewLifecycleOwner, {
             if(it ==true){
                 this.findNavController().navigate(WriterTaskListFragmentDirections
-                    .actionWriterTaskListFragmentToAddWriterTaskFragment())
+                    .actionWriterTaskListFragmentToAddWriterTaskFragment(writerId))
                 viewModel.doneNavigatingToAddTasks()
             }
         })
