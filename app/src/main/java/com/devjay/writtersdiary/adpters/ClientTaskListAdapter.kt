@@ -6,22 +6,24 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devjay.writtersdiary.data.entities.ClientTask
+import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.databinding.ClientTaskCardBinding
 
-class ClientTaskListAdapter: ListAdapter<ClientTask, ClientTaskListAdapter.ViewHolder>(ClientTaskDiffCallback()) {
+class ClientTaskListAdapter(val clickListener: ClientTaskListener): ListAdapter<ClientTask, ClientTaskListAdapter.ViewHolder>(ClientTaskDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position)!!)
+        holder.bind(getItem(position)!!, clickListener)
     }
 
     // viewHolder
     class ViewHolder (val binding: ClientTaskCardBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind (item: ClientTask){
+        fun bind (item: ClientTask, clickListener: ClientTaskListener){
             binding.clientTask = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
         companion object{
@@ -44,6 +46,10 @@ class ClientTaskListAdapter: ListAdapter<ClientTask, ClientTaskListAdapter.ViewH
 
     }
 
+}
+
+class ClientTaskListener (val clickListener: (clientTaskId: Long) -> Unit){
+    fun onClick(clientTask: ClientTask) = clickListener(clientTask.taskID)
 }
 
 

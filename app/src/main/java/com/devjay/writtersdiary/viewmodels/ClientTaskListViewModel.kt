@@ -27,4 +27,15 @@ class ClientTaskListViewModel @Inject constructor(
     fun doneNavigatingToAddTasks(){
         _navigateToAddClientTask.value =null
     }
+
+    private val _navigateToUpdateClientTask = MutableLiveData<Long?>()
+    val navigateToUpdateClientTask: LiveData<Long?>
+        get() = _navigateToUpdateClientTask
+
+    fun onClientTaskUpdateClicked(Id: Long) {
+        _navigateToUpdateClientTask.value = Id
+    }
+    fun doneNavigatingToUpdateClientTask(){
+        _navigateToUpdateClientTask.value =null
+    }
 }

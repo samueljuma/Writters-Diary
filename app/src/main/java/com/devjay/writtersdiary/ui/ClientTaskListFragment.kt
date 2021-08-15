@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devjay.writtersdiary.R
 import com.devjay.writtersdiary.adpters.ClientTaskListAdapter
+import com.devjay.writtersdiary.adpters.ClientTaskListener
 import com.devjay.writtersdiary.adpters.WriterTaskListAdapter
 import com.devjay.writtersdiary.databinding.FragmentClientTaskListBinding
 import com.devjay.writtersdiary.databinding.FragmentWriterTaskListBinding
@@ -27,7 +28,9 @@ class ClientTaskListFragment : Fragment() {
     ): View? {
         binding = FragmentClientTaskListBinding.inflate(inflater,container,false)
 
-        val adapter = ClientTaskListAdapter()
+        val adapter = ClientTaskListAdapter(ClientTaskListener{
+            clientTaskId ->  viewModel.onClientTaskUpdateClicked(clientTaskId)
+        })
 
         binding.clientTasksList.adapter =adapter
         binding.viewModel = viewModel
@@ -37,6 +40,9 @@ class ClientTaskListFragment : Fragment() {
 
         subscribeUI(adapter,binding,clientId)
 
+        /**
+         * NAVIGATION OBSERVERS
+         */
         viewModel.navigateToAddClientTask.observe(viewLifecycleOwner,{
             if(it==true){
                 this.findNavController().navigate(ClientTaskListFragmentDirections
@@ -44,6 +50,16 @@ class ClientTaskListFragment : Fragment() {
                 viewModel.doneNavigatingToAddTasks()
             }
         })
+
+        viewModel.navigateToUpdateClientTask.observe(viewLifecycleOwner, { clientTask->
+            clientTask?.let {
+                this.findNavController().navigate(ClientTaskListFragmentDirections
+                    .actionClientTaskListFragmentToUpdateClientTaskFragment(clientTask))
+                viewModel.doneNavigatingToUpdateClientTask()
+            }
+        })
+
+
         return binding.root
     }
 
