@@ -35,4 +35,6 @@
     <string name="submit">Submit</string>
     <string name="new_task_to_writer">New Writer Task</string>
     <string name="client_tasks_fragment_title">Client Tasks</string>
+    <string name="payable_amount">Payable Amount</string>
+    <string name="enter_amount_in_dollars">Enter amount in dollars</string>
 </resources>

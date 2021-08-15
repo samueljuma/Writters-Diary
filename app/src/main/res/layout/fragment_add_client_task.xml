@@ -108,6 +108,34 @@
             app:layout_constraintTop_toTopOf="@+id/word_count_label"
             tools:ignore="TextFields" />
 
+        <TextView
+            android:id="@+id/amount_payable_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_space"
+            android:text="@string/payable_amount"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/amount_payable_edit_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/word_count_label"
+            app:layout_constraintVertical_bias="0.100000024" />
+
+        <EditText
+            android:id="@+id/amount_payable_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/wide_space"
+            android:ems="10"
+            android:hint="@string/enter_amount_in_dollars"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@+id/amount_payable_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/amount_payable_label"
+            tools:ignore="TextFields" />
+
         <Button
             android:id="@+id/submit_btn"
             android:layout_width="wrap_content"
@@ -117,8 +145,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/word_count_edit_text"
-            app:layout_constraintTop_toBottomOf="@+id/word_count_edit_text"
+            app:layout_constraintStart_toStartOf="@+id/amount_payable_edit_text"
+            app:layout_constraintTop_toBottomOf="@+id/amount_payable_edit_text"
             app:layout_constraintVertical_bias="0.050000012" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
