@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="writerTask"
+            type="com.devjay.writtersdiary.data.entities.WriterTask" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -92,6 +94,7 @@
             android:layout_marginTop="@dimen/wide_space"
             android:background="@drawable/white_round_corner_background"
             android:ems="10"
+            style="@style/bold_text_black"
             android:hint="@string/enter_amount_in_dollars"
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
@@ -109,6 +112,7 @@
             android:layout_marginTop="@dimen/wide_space"
             android:background="@drawable/white_round_corner_background"
             android:ems="10"
+            style="@style/bold_text_black"
             android:hint="@string/enter_word_count"
             android:importantForAutofill="no"
             android:inputType="number"
@@ -126,6 +130,7 @@
             android:layout_marginTop="@dimen/wide_space"
             android:background="@drawable/white_round_corner_background"
             android:ems="10"
+            style="@style/bold_text_black"
             android:hint="@string/task_title"
             android:importantForAutofill="no"
             android:inputType="textPersonName"

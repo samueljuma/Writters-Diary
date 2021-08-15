@@ -21,10 +21,22 @@ class WriterTaskListViewModel @Inject constructor(
     private val _navigateToAddWriterTask = MutableLiveData<Boolean?>()
     val navigateToAddWriterTask: LiveData<Boolean?>
         get() = _navigateToAddWriterTask
+
     fun onAddFabClicked() {
         _navigateToAddWriterTask.value = true
     }
     fun doneNavigatingToAddTasks(){
         _navigateToAddWriterTask.value =null
+    }
+
+    private val _navigateToUpdateWriterTask = MutableLiveData<Long?>()
+    val navigateToUpdateWriterTask: LiveData<Long?>
+        get() = _navigateToUpdateWriterTask
+
+    fun onWriterTaskUpdateClicked(Id: Long) {
+        _navigateToUpdateWriterTask.value = Id
+    }
+    fun doneNavigatingToUpdateWriterTask(){
+        _navigateToUpdateWriterTask.value =null
     }
 }

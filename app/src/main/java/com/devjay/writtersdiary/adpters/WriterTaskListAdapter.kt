@@ -8,20 +8,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.databinding.WriterTaskCardBinding
 
-class WriterTaskListAdapter: ListAdapter<WriterTask, WriterTaskListAdapter.ViewHolder>(WriterTaskDiffCallback()) {
+class WriterTaskListAdapter(val clickListener: WriterTaskListener): ListAdapter<WriterTask, WriterTaskListAdapter.ViewHolder>(WriterTaskDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position)!!)
+        holder.bind(getItem(position)!!,clickListener)
     }
 
     // viewHolder
     class ViewHolder (val binding: WriterTaskCardBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind (item: WriterTask){
+        fun bind (item: WriterTask, clickListener: WriterTaskListener){
             binding.writerTask = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
         companion object{
@@ -44,6 +45,10 @@ class WriterTaskListAdapter: ListAdapter<WriterTask, WriterTaskListAdapter.ViewH
 
     }
 
+}
+
+class WriterTaskListener (val clickListener: (writerTaskId: Long) -> Unit){
+    fun onClick(writerTask: WriterTask) = clickListener(writerTask.taskID)
 }
 
 

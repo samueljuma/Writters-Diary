@@ -1,6 +1,7 @@
 package com.devjay.writtersdiary.adpters
 
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.devjay.writtersdiary.data.entities.Client
@@ -107,8 +108,12 @@ fun TextView.setWriterTaskIsComplete(task: WriterTask?){
 }
 @BindingAdapter("writerTaskAmountPayable")
 fun TextView.setWriterTaskAmountPayable(task: WriterTask?){
+
+}
+@BindingAdapter("displayWriterTaskAmountPayable")
+fun EditText.setWriterTaskAmountPayable(task: WriterTask?){
     task?.let {
-        text = formatAmountPayable(task.amountPayable)
+        setText(formatAmountPayable(task.amountPayable))
     }
 }
 

@@ -1,7 +1,9 @@
 package com.devjay.writtersdiary.utils
 
 import android.annotation.SuppressLint
+import android.text.Editable
 import java.text.SimpleDateFormat
+import java.util.function.DoubleBinaryOperator
 
 fun formatPendingTasksText(value: Int): String{
     return "Pending (${value})"

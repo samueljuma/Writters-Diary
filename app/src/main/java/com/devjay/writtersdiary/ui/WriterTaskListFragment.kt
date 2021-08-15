@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devjay.writtersdiary.adpters.WriterTaskListAdapter
+import com.devjay.writtersdiary.adpters.WriterTaskListener
 import com.devjay.writtersdiary.databinding.FragmentWriterTaskListBinding
 import com.devjay.writtersdiary.viewmodels.WriterTaskListViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,13 +26,16 @@ class WriterTaskListFragment : Fragment() {
     ): View? {
         binding = FragmentWriterTaskListBinding.inflate(inflater, container, false)
 
-        val adapter = WriterTaskListAdapter()
+        binding.viewModel = viewModel
+        val adapter = WriterTaskListAdapter(WriterTaskListener {
+            writerTaskId ->  viewModel.onWriterTaskUpdateClicked(writerTaskId)
+        })
 
         val arguments = WriterTaskListFragmentArgs.fromBundle(requireArguments())
         val writerId = arguments.writerID
 
         binding.writerTasksList.adapter = adapter
-        binding.viewModel = viewModel
+
 
         subscribeUI(adapter,binding,writerId)
 
@@ -43,6 +47,13 @@ class WriterTaskListFragment : Fragment() {
                 this.findNavController().navigate(WriterTaskListFragmentDirections
                     .actionWriterTaskListFragmentToAddWriterTaskFragment(writerId))
                 viewModel.doneNavigatingToAddTasks()
+            }
+        })
+        viewModel.navigateToUpdateWriterTask.observe(viewLifecycleOwner, { writerTask ->
+            writerTask?.let {
+                this.findNavController().navigate(WriterTaskListFragmentDirections
+                    .actionWriterTaskListFragmentToUpdateWriterTaskFragment(writerTask))
+                viewModel.doneNavigatingToUpdateWriterTask()
             }
         })
 
