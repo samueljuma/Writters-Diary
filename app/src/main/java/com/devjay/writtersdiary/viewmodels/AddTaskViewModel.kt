@@ -28,7 +28,9 @@ class AddTaskViewModel @Inject constructor(
         }
     }
 
-    fun addClientTask(clientTask: ClientTask){
+    fun addClientTask(clientId:Long,title: String,orderNo: String,wordCount: Int,amountPayable: Double){
+        val clientTask = ClientTask(assignedBy = clientId,title = title,orderNumber = orderNo
+            ,numberOfPagesOrWordCount = wordCount,amountPayable = amountPayable)
         viewModelScope.launch {
             clientTaskRepository.addClientTaskToDatabase(clientTask)
         }
@@ -42,6 +44,15 @@ class AddTaskViewModel @Inject constructor(
     }
     fun doneNavigatingBackToWriterTaskList(){
         _addTaskAndNavigateBackToWriterTaskList.value= null
+    }
+    private val _addTaskAndNavigateBackToClientTaskList = MutableLiveData<Boolean?>()
+    val addTaskAndNavigateBackToClientTaskList: LiveData<Boolean?>
+        get() = _addTaskAndNavigateBackToClientTaskList
+    fun onAddClientTaskClicked(){
+        _addTaskAndNavigateBackToClientTaskList.value= true
+    }
+    fun doneNavigatingBackToClientTaskList(){
+        _addTaskAndNavigateBackToClientTaskList.value= null
     }
 
 }

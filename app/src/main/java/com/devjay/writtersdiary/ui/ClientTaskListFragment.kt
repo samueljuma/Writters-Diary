@@ -40,7 +40,7 @@ class ClientTaskListFragment : Fragment() {
         viewModel.navigateToAddClientTask.observe(viewLifecycleOwner,{
             if(it==true){
                 this.findNavController().navigate(ClientTaskListFragmentDirections
-                    .actionClientTaskListFragmentToAddClientTaskFragment())
+                    .actionClientTaskListFragmentToAddClientTaskFragment(clientId))
                 viewModel.doneNavigatingToAddTasks()
             }
         })

@@ -42,7 +42,7 @@ class AddWriterTaskFragment : Fragment() {
     }
 
     private fun addWriterTaskToDatabase(writerId: Long) {
-        val title = binding.taskTileEditText.text.toString()
+        val title = binding.taskTitleEditText.text.toString()
         val orderNo = binding.orderNumberEditText.text.toString()
         val wordCount = binding.wordCountEditText.text.toString().toInt()
         val amount = binding.amountPayableEditText.text.toString().toDouble()
