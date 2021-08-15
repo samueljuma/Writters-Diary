@@ -132,7 +132,7 @@
             android:ems="10"
             android:hint="@string/enter_amount_in_dollars"
             android:importantForAutofill="no"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             app:layout_constraintBottom_toBottomOf="@+id/amount_payable_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/amount_payable_label"

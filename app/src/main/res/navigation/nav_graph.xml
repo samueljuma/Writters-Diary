@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/updateWriterTaskFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -164,4 +164,9 @@
             android:name="clientId"
             app:argType="long" />
     </fragment>
+    <fragment
+        android:id="@+id/updateWriterTaskFragment"
+        android:name="com.devjay.writtersdiary.ui.UpdateWriterTaskFragment"
+        android:label="UpdateWriterTaskFragment"
+        tools:layout="@layout/fragment_update_writer_task"/>
 </navigation>

@@ -40,6 +40,7 @@ class AddWriterFragment : Fragment() {
         })
         return binding.root
     }
+
     //Add Writer and Navigate Back
     private fun addWriterAndNavigateBack(name: String, viewModel: AddWritersOrClientsViewModel){
         if(name.isNotBlank()){
