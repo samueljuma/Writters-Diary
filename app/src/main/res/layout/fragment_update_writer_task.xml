@@ -34,11 +34,11 @@
             style="@style/bold_text_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/very_small_space"
             android:text="@string/complete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.72"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/amt_payable_label"
             app:layout_constraintTop_toBottomOf="@+id/amt_payable_edit_text"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -47,30 +47,30 @@
             style="@style/bold_text_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/wide_space"
+            android:layout_marginTop="@dimen/very_small_space"
             android:background="@drawable/gray_round_corner_background"
             android:text="@string/task_title_label"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/title_edit_text"
             app:layout_constraintEnd_toEndOf="@+id/amt_payable_label"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/amt_payable_label"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/point_to_word_count"
             style="@style/bold_text_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/wide_space"
+            android:layout_marginTop="@dimen/small_space"
             android:background="@drawable/gray_round_corner_background"
             android:text="@string/word_count"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/word_count_editText"
             app:layout_constraintEnd_toEndOf="@+id/amt_payable_label"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/amt_payable_label"
             app:layout_constraintTop_toBottomOf="@+id/task_title_label"
-            app:layout_constraintVertical_bias="0.050000012" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/amt_payable_label"
@@ -80,25 +80,26 @@
             android:layout_marginTop="@dimen/wide_space"
             android:background="@drawable/gray_round_corner_background"
             android:text="@string/point_to_amount"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/amt_payable_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/point_to_word_count"
-            app:layout_constraintVertical_bias="0.06999999" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <EditText
             android:id="@+id/amt_payable_edit_text"
+            style="@style/bold_text_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/wide_space"
+            android:layout_marginTop="@dimen/small_space"
             android:background="@drawable/white_round_corner_background"
             android:ems="10"
-            style="@style/bold_text_black"
             android:hint="@string/enter_amount_in_dollars"
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
-            app:layout_constraintBottom_toBottomOf="@+id/amt_payable_label"
+            android:padding="@dimen/medium_space"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/amt_payable_label"
@@ -107,33 +108,34 @@
 
         <EditText
             android:id="@+id/word_count_editText"
+            style="@style/bold_text_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/wide_space"
+            android:layout_marginTop="@dimen/small_space"
             android:background="@drawable/white_round_corner_background"
             android:ems="10"
-            style="@style/bold_text_black"
             android:hint="@string/enter_word_count"
             android:importantForAutofill="no"
             android:inputType="number"
+            android:padding="@dimen/medium_space"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/point_to_word_count"
             app:layout_constraintTop_toBottomOf="@+id/title_edit_text"
-            app:layout_constraintVertical_bias="0.00999999" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/title_edit_text"
+            style="@style/bold_text_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/wide_space"
             android:background="@drawable/white_round_corner_background"
             android:ems="10"
-            style="@style/bold_text_black"
             android:hint="@string/task_title"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
+            android:padding="@dimen/medium_space"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -143,17 +145,34 @@
 
         <TextView
             android:id="@+id/update_Btn"
+            style="@style/bold_text_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/update"
-            style="@style/bold_text_black"
-            android:padding="@dimen/medium_space"
+            android:layout_marginTop="@dimen/very_small_space"
             android:background="@drawable/white_round_corner_background"
+            android:padding="@dimen/medium_space"
+            android:text="@string/update"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/is_paid_checkbox"
+            app:layout_constraintEnd_toEndOf="@+id/amt_payable_edit_text"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/is_complete_checkbox"
-            app:layout_constraintTop_toBottomOf="@+id/is_paid_checkbox" />
+            app:layout_constraintTop_toBottomOf="@+id/is_paid_checkbox"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/cancelBtn"
+            style="@style/bold_text_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_round_corner_background"
+            android:padding="@dimen/medium_space"
+            android:text="@string/cancel"
+            app:layout_constraintBottom_toBottomOf="@+id/update_Btn"
+            app:layout_constraintEnd_toStartOf="@+id/update_Btn"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/amt_payable_label"
+            app:layout_constraintTop_toTopOf="@+id/update_Btn"
+            app:layout_constraintVertical_bias="1.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
