@@ -108,15 +108,16 @@ fun TextView.setWriterTaskIsComplete(task: WriterTask?){
 }
 @BindingAdapter("writerTaskAmountPayable")
 fun TextView.setWriterTaskAmountPayable(task: WriterTask?){
-
-}
-@BindingAdapter("displayWriterTaskAmountPayable")
-fun EditText.setWriterTaskAmountPayable(task: WriterTask?){
     task?.let {
-        setText(formatAmountPayable(task.amountPayable))
+        text = formatAmountPayable(task.amountPayable)
     }
 }
-
+@BindingAdapter("writerTaskEditableAmountPayable")
+fun TextView.setWriterTaskEditableAmountPayable(task: WriterTask?){
+    task?.let {
+        text = task.amountPayable.toString()
+    }
+}
 /**
  *
  * CLIENT_TASK PROPERTIES
@@ -175,6 +176,13 @@ fun TextView.setClientTaskAmountPayable(task: ClientTask?){
         text = formatAmountPayable(task.amountPayable)
     }
 }
+@BindingAdapter("clientTaskEditableAmountPayable")
+fun TextView.setClientTaskEditableAmountPayable(task: ClientTask?){
+    task?.let {
+        text = task.amountPayable.toString()
+    }
+}
+
 /**
  * OTHER BINDING ADAPTERS
  */

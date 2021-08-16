@@ -6,6 +6,9 @@
 
     <data>
         <variable
+            name="viewModel"
+            type="com.devjay.writtersdiary.viewmodels.UpdateTaskViewModel" />
+        <variable
             name="writerTask"
             type="com.devjay.writtersdiary.data.entities.WriterTask" />
     </data>
@@ -95,6 +98,7 @@
             android:layout_marginTop="@dimen/small_space"
             android:background="@drawable/white_round_corner_background"
             android:ems="10"
+            app:writerTaskEditableAmountPayable="@{writerTask}"
             android:hint="@string/enter_amount_in_dollars"
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
@@ -115,6 +119,7 @@
             android:background="@drawable/white_round_corner_background"
             android:ems="10"
             android:hint="@string/enter_word_count"
+            app:writerTaskWordCount="@{writerTask}"
             android:importantForAutofill="no"
             android:inputType="number"
             android:padding="@dimen/medium_space"
@@ -132,6 +137,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/white_round_corner_background"
             android:ems="10"
+            app:writerTaskTitle="@{writerTask}"
             android:hint="@string/task_title"
             android:importantForAutofill="no"
             android:inputType="textPersonName"

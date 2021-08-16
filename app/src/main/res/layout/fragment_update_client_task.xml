@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="writerTask"
+            name="clientTask"
             type="com.devjay.writtersdiary.data.entities.ClientTask" />
     </data>
 
@@ -99,6 +99,7 @@
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
             android:padding="@dimen/medium_space"
+            app:clientTaskEditableAmountPayable="@{clientTask}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -118,6 +119,7 @@
             android:importantForAutofill="no"
             android:inputType="number"
             android:padding="@dimen/medium_space"
+            app:clientTaskWordCount="@{clientTask}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -132,6 +134,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/white_round_corner_background"
             android:ems="10"
+            app:clientTaskTitle="@{clientTask}"
             android:hint="@string/task_title"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
