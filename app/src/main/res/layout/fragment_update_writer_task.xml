@@ -12,11 +12,14 @@
             name="writerTask"
             type="com.devjay.writtersdiary.data.entities.WriterTask" />
     </data>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/very_small_space"
+        android:padding="@dimen/medium_space"
         android:background="@drawable/gray_800_round_corner_background">
 
         <CheckBox
@@ -37,11 +40,12 @@
             style="@style/bold_text_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/very_small_space"
+            android:layout_marginTop="@dimen/small_space"
             android:text="@string/complete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/amt_payable_label"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/amt_payable_edit_text"
             app:layout_constraintTop_toBottomOf="@+id/amt_payable_edit_text"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -50,7 +54,7 @@
             style="@style/bold_text_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/very_small_space"
+            android:layout_marginTop="@dimen/medium_space"
             android:background="@drawable/gray_round_corner_background"
             android:text="@string/task_title_label"
             app:layout_constraintBottom_toBottomOf="@+id/title_edit_text"
@@ -72,7 +76,7 @@
             app:layout_constraintEnd_toEndOf="@+id/amt_payable_label"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/amt_payable_label"
-            app:layout_constraintTop_toBottomOf="@+id/task_title_label"
+            app:layout_constraintTop_toBottomOf="@+id/order_label"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
@@ -80,7 +84,8 @@
             style="@style/bold_text_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/wide_space"
+            android:layout_marginStart="@dimen/wide_space"
+            android:layout_marginTop="@dimen/small_space"
             android:background="@drawable/gray_round_corner_background"
             android:text="@string/point_to_amount"
             app:layout_constraintBottom_toBottomOf="@+id/amt_payable_edit_text"
@@ -98,7 +103,6 @@
             android:layout_marginTop="@dimen/small_space"
             android:background="@drawable/white_round_corner_background"
             android:ems="10"
-            app:writerTaskEditableAmountPayable="@{writerTask}"
             android:hint="@string/enter_amount_in_dollars"
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
@@ -108,7 +112,8 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/amt_payable_label"
             app:layout_constraintTop_toBottomOf="@+id/word_count_editText"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            app:writerTaskEditableAmountPayable="@{writerTask}" />
 
         <EditText
             android:id="@+id/word_count_editText"
@@ -119,7 +124,6 @@
             android:background="@drawable/white_round_corner_background"
             android:ems="10"
             android:hint="@string/enter_word_count"
-            app:writerTaskWordCount="@{writerTask}"
             android:importantForAutofill="no"
             android:inputType="number"
             android:padding="@dimen/medium_space"
@@ -127,17 +131,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/point_to_word_count"
-            app:layout_constraintTop_toBottomOf="@+id/title_edit_text"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/order_number_edit_text"
+            app:layout_constraintVertical_bias="0.0"
+            app:writerTaskWordCount="@{writerTask}" />
 
         <EditText
             android:id="@+id/title_edit_text"
             style="@style/bold_text_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_space"
             android:background="@drawable/white_round_corner_background"
             android:ems="10"
-            app:writerTaskTitle="@{writerTask}"
             android:hint="@string/task_title"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
@@ -147,7 +152,8 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/task_title_label"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            app:writerTaskTitle="@{writerTask}" />
 
         <TextView
             android:id="@+id/update_Btn"
@@ -178,8 +184,44 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/amt_payable_label"
             app:layout_constraintTop_toTopOf="@+id/update_Btn"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/order_label"
+            style="@style/bold_text_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_space"
+            android:background="@drawable/gray_round_corner_background"
+            android:text="@string/order_label"
+            app:layout_constraintBottom_toBottomOf="@+id/order_number_edit_text"
+            app:layout_constraintEnd_toEndOf="@+id/amt_payable_label"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/amt_payable_label"
+            app:layout_constraintTop_toBottomOf="@+id/task_title_label"
             app:layout_constraintVertical_bias="1.0" />
+
+        <EditText
+            android:id="@+id/order_number_edit_text"
+            style="@style/bold_text_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_space"
+            android:background="@drawable/white_round_corner_background"
+            android:ems="10"
+            android:hint="@string/enter_order_number"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:padding="@dimen/medium_space"
+            app:writerTaskEditableOrderNo="@{writerTask}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/order_label"
+            app:layout_constraintTop_toBottomOf="@+id/title_edit_text"
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

@@ -40,6 +40,7 @@ class UpdateWriterTaskFragment : Fragment() {
             }
         })
 
+
         return binding.root
     }
 

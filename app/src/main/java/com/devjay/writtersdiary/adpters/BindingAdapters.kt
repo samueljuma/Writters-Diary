@@ -70,6 +70,12 @@ fun TextView.setWriterTaskOrderNo(task: WriterTask?){
         text = formatOrderNumber(task.orderNumber)
     }
 }
+@BindingAdapter("writerTaskEditableOrderNo")
+fun TextView.setWriterTaskEditableOrderNo(task: WriterTask?){
+    task?.let {
+        text = task.orderNumber.toString()
+    }
+}
 @BindingAdapter("writerTaskPageCount")
 fun TextView.setWriterTaskPageCount(task: WriterTask?){
     task?.let {
@@ -132,6 +138,12 @@ fun TextView.setClientTaskTitle(task: ClientTask?){
 fun TextView.setClientTaskOrderNo(task: ClientTask?){
     task?.let {
         text = formatOrderNumber(task.orderNumber)
+    }
+}
+@BindingAdapter("clientTaskEditableOrderNo")
+fun TextView.setClientTaskEditableOrderNo(task: ClientTask?){
+    task?.let {
+        text = task.orderNumber.toString()
     }
 }
 @BindingAdapter("clientTaskPageCount")

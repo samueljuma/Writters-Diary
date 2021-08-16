@@ -7,10 +7,14 @@
             name="homeViewModel"
             type="com.devjay.writtersdiary.viewmodels.HomeViewModel" />
     </data>
-<LinearLayout
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
     android:id="@+id/homeFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.HomeFragment"
     android:orientation="vertical"
     android:layout_marginStart="@dimen/very_small_space"
@@ -177,4 +181,5 @@
         app:srcCompat="@drawable/homebcg" />
 
 </LinearLayout>
+</ScrollView>
 </layout>
