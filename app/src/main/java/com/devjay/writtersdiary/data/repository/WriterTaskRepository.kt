@@ -24,6 +24,10 @@ class WriterTaskRepository @Inject constructor(
         writerTaskDao.updateTaskPaid(isPaid,taskId)
     }
 
+    suspend fun updateTask(title: String, orderNo: String, wordCount: Int, amount: Double,isComplete: Boolean,isPaid: Boolean, taskId: Long){
+        writerTaskDao.updateTask(title,orderNo,wordCount,amount,isComplete,isPaid,taskId)
+    }
+
     fun getWriterTask(taskId: Long) = writerTaskDao.getWriterTask(taskId)
 
     fun getAllWritersTasks(writerId: Long) = writerTaskDao.getAllWritersTasks(writerId)

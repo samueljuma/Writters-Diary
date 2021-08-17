@@ -195,6 +195,9 @@
         <argument
             android:name="writerTaskId"
             app:argType="long" />
+        <argument
+            android:name="writerId"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/updateClientTaskFragment"

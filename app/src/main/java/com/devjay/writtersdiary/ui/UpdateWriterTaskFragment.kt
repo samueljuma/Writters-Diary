@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asFlow
+import androidx.navigation.fragment.findNavController
 import com.devjay.writtersdiary.R
 import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.databinding.FragmentUpdateWriterTaskBinding
@@ -29,6 +30,7 @@ class UpdateWriterTaskFragment : Fragment() {
 
         val args = UpdateWriterTaskFragmentArgs.fromBundle(requireArguments())
         val writerTaskId = args.writerTaskId
+        val writerId = args.writerId
 
         binding.viewModel = vieModel
 
@@ -40,8 +42,44 @@ class UpdateWriterTaskFragment : Fragment() {
             }
         })
 
+        vieModel.updateTaskAndNavigateBackToWritersTaskList.observe(viewLifecycleOwner,{
+            if(it==true){
+                updateAndGoBack(writerTaskId, writerId)
+            }
+        })
+        vieModel.cancelUpdatingTaskAndNavigateBackToWritersTaskList.observe(viewLifecycleOwner,{
+            if(it==true){
+                this.findNavController().navigate(UpdateWriterTaskFragmentDirections
+                    .actionUpdateWriterTaskFragmentToWriterTaskListFragment(writerId))
+                vieModel.doneCancelingAndNavigatingBackToWriterTaskList()
+            }
+        })
+
 
         return binding.root
+    }
+
+    private fun updateAndGoBack(writerTaskId: Long, writerId: Long) {
+        val title = binding.titleEditText.text.toString()
+        val orderNo = binding.orderNumberEditText.text.toString()
+        val wordCount = binding.wordCountEditText.text.toString().toInt()
+        val amountPayable = binding.amtPayableEditText.text.toString().toDouble()
+        val isComplete = binding.isCompleteCheckbox.isChecked
+        val isPaid = binding.isPaidCheckbox.isChecked
+        vieModel.updateTask(
+            title,
+            orderNo,
+            wordCount,
+            amountPayable,
+            isComplete,
+            isPaid,
+            writerTaskId
+        )
+        this.findNavController().navigate(
+            UpdateWriterTaskFragmentDirections
+                .actionUpdateWriterTaskFragmentToWriterTaskListFragment(writerId)
+        )
+        vieModel.doneNavigatingBackToWriterTaskList()
     }
 
 }

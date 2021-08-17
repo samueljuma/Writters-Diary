@@ -52,7 +52,7 @@ class WriterTaskListFragment : Fragment() {
         viewModel.navigateToUpdateWriterTask.observe(viewLifecycleOwner, { writerTask ->
             writerTask?.let {
                 this.findNavController().navigate(WriterTaskListFragmentDirections
-                    .actionWriterTaskListFragmentToUpdateWriterTaskFragment(writerTask))
+                    .actionWriterTaskListFragmentToUpdateWriterTaskFragment(writerTask, writerId))
                 viewModel.doneNavigatingToUpdateWriterTask()
             }
         })
