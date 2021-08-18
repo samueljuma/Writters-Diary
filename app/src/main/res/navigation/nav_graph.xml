@@ -84,7 +84,7 @@
     <fragment
         android:id="@+id/addClientsFragment"
         android:name="com.devjay.writtersdiary.ui.AddClientsFragment"
-        android:label="AddClientsFragment"
+        android:label="@string/new_client"
         tools:layout="@layout/fragment_add_clients">
         <action
             android:id="@+id/action_addClientsFragment_to_clientsFragment"
@@ -99,7 +99,7 @@
     <fragment
         android:id="@+id/writerTaskListFragment"
         android:name="com.devjay.writtersdiary.ui.WriterTaskListFragment"
-        android:label="WriterTaskListFragment"
+        android:label="@string/writer_tasks"
         tools:layout="@layout/fragment_writer_task_list">
         <argument
             android:name="writerID"
@@ -145,7 +145,7 @@
     <fragment
         android:id="@+id/addWriterTaskFragment"
         android:name="com.devjay.writtersdiary.ui.AddWriterTaskFragment"
-        android:label="@string/new_task_to_writer"
+        android:label="@string/new_task"
         tools:layout="@layout/fragment_add_writer_task">
         <action
             android:id="@+id/action_addWriterTaskFragment_to_writerTaskListFragment"
@@ -163,7 +163,7 @@
     <fragment
         android:id="@+id/addClientTaskFragment"
         android:name="com.devjay.writtersdiary.ui.AddClientTaskFragment"
-        android:label="AddClientTaskFragment"
+        android:label="@string/new_task"
         tools:layout="@layout/fragment_add_client_task">
         <action
             android:id="@+id/action_addClientTaskFragment_to_clientTaskListFragment"
@@ -181,7 +181,7 @@
     <fragment
         android:id="@+id/updateWriterTaskFragment"
         android:name="com.devjay.writtersdiary.ui.UpdateWriterTaskFragment"
-        android:label="UpdateWriterTaskFragment"
+        android:label="@string/update_task"
         tools:layout="@layout/fragment_update_writer_task">
         <action
             android:id="@+id/action_updateWriterTaskFragment_to_writerTaskListFragment"
@@ -202,7 +202,7 @@
     <fragment
         android:id="@+id/updateClientTaskFragment"
         android:name="com.devjay.writtersdiary.ui.UpdateClientTaskFragment"
-        android:label="UpdateClientTaskFragment"
+        android:label="@string/update_task"
         tools:layout="@layout/fragment_update_client_task">
         <action
             android:id="@+id/action_updateClientTaskFragment_to_clientTaskListFragment"
@@ -220,4 +220,9 @@
             android:name="clientId"
             app:argType="long" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.devjay.writtersdiary.ui.AboutFragment"
+        android:label="@string/about"
+        tools:layout="@layout/fragment_about" />
 </navigation>

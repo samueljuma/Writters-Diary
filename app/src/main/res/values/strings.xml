@@ -34,11 +34,17 @@
     <string name="enter_word_count">3000</string>
     <string name="submit">Submit</string>
     <string name="new_task_to_writer">New Writer Task</string>
-    <string name="client_tasks_fragment_title">Client Tasks</string>
+    <string name="client_tasks_fragment_title">Client\'s Tasks</string>
     <string name="payable_amount">Payable Amount</string>
     <string name="enter_amount_in_dollars">Enter amount in dollars</string>
     <string name="paid">Paid</string>
     <string name="complete">Complete</string>
     <string name="update">Update</string>
     <string name="cancel">Cancel</string>
+    <string name="about_app">Writer\'s Diary App is a tool for online writers across all categories</string>
+    <string name="about">About</string>
+    <string name="update_task">Update Task</string>
+    <string name="writer_tasks">Writer\'s Tasks</string>
+    <string name="new_task">New Task</string>
+    <string name="new_client">New Client</string>
 </resources>
