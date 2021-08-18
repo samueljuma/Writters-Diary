@@ -6,10 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.asFlow
 import androidx.navigation.fragment.findNavController
-import com.devjay.writtersdiary.R
-import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.databinding.FragmentUpdateWriterTaskBinding
 import com.devjay.writtersdiary.viewmodels.UpdateTaskViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -66,15 +63,7 @@ class UpdateWriterTaskFragment : Fragment() {
         val amountPayable = binding.amtPayableEditText.text.toString().toDouble()
         val isComplete = binding.isCompleteCheckbox.isChecked
         val isPaid = binding.isPaidCheckbox.isChecked
-        vieModel.updateTask(
-            title,
-            orderNo,
-            wordCount,
-            amountPayable,
-            isComplete,
-            isPaid,
-            writerTaskId
-        )
+        vieModel.updateWriterTask(title, orderNo, wordCount, amountPayable, isComplete, isPaid, writerTaskId)
         this.findNavController().navigate(
             UpdateWriterTaskFragmentDirections
                 .actionUpdateWriterTaskFragmentToWriterTaskListFragment(writerId)

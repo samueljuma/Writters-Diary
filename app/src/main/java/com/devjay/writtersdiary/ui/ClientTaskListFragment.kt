@@ -54,7 +54,7 @@ class ClientTaskListFragment : Fragment() {
         viewModel.navigateToUpdateClientTask.observe(viewLifecycleOwner, { clientTask->
             clientTask?.let {
                 this.findNavController().navigate(ClientTaskListFragmentDirections
-                    .actionClientTaskListFragmentToUpdateClientTaskFragment(clientTask))
+                    .actionClientTaskListFragmentToUpdateClientTaskFragment(clientTask, clientId))
                 viewModel.doneNavigatingToUpdateClientTask()
             }
         })

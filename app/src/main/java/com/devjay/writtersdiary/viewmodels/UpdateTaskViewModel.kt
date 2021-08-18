@@ -22,10 +22,15 @@ class UpdateTaskViewModel @Inject constructor(
         return clientTaskRepository.getClientTask(taskId).asLiveData()
     }
 
-    fun updateTask(title: String, orderNo: String, wordCount: Int, amount: Double,isComplete: Boolean,isPaid: Boolean, taskId: Long){
+    fun updateWriterTask(title: String, orderNo: String, wordCount: Int, amount: Double,isComplete: Boolean,isPaid: Boolean, taskId: Long){
        viewModelScope.launch {
            writerTaskRepository.updateTask(title,orderNo,wordCount,amount,isComplete,isPaid,taskId)
        }
+    }
+    fun updateClientTask(title: String, orderNo: String, wordCount: Int, amount: Double,isComplete: Boolean,isPaid: Boolean, taskId: Long){
+        viewModelScope.launch {
+            clientTaskRepository.updateTask(title,orderNo,wordCount,amount,isComplete,isPaid,taskId)
+        }
     }
 
     private val _updateTaskAndNavigateBackToWritersTaskList = MutableLiveData<Boolean?>()
@@ -47,6 +52,17 @@ class UpdateTaskViewModel @Inject constructor(
     fun doneCancelingAndNavigatingBackToWriterTaskList(){
         _cancelUpdatingTaskAndNavigateBackToWritersTaskList.value= null
     }
+
+    private val _navigateToClientTaskList = MutableLiveData<Boolean?>()
+    val navigateToClientTaskList: LiveData<Boolean?>
+        get() = _navigateToClientTaskList
+    fun onClickUpdate(){
+        _navigateToClientTaskList.value = true
+    }
+    fun doneNavigatingToClientTaskList(){
+        _navigateToClientTaskList.value = null
+    }
+
 
 
 }

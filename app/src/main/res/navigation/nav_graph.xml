@@ -216,5 +216,8 @@
         <argument
             android:name="clientTaskId"
             app:argType="long" />
+        <argument
+            android:name="clientId"
+            app:argType="long" />
     </fragment>
 </navigation>

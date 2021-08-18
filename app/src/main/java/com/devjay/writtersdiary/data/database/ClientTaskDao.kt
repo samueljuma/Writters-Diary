@@ -22,6 +22,9 @@ interface ClientTaskDao {
     @Query("UPDATE client_tasks_table SET is_paid = :isPaid WHERE taskID = :taskID")
     suspend fun updateClientTaskPaid(isPaid: Boolean, taskID: Long)
 
+    @Query("UPDATE client_tasks_table SET task_title= :title,order_number= :orderNo,number_of_words=:wordCount,amount_payable=:amount,is_complete=:isComplete,is_paid=:isPaid WHERE taskID= :taskId" )
+    suspend fun updateTask(title: String, orderNo: String, wordCount: Int, amount: Double,isComplete: Boolean,isPaid: Boolean, taskId: Long)
+
     // get a specific clientTask by ID
     @Query("SELECT * FROM client_tasks_table WHERE taskID = :taskId")
     fun getClientTask (taskId: Long): Flow<ClientTask>
