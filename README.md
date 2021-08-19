@@ -2,21 +2,21 @@
 An Android Application build for online writers to keep track of their orders [It's basically a diary]
 
 ## Tech Stack
-* [MVVM architecture][1] - Helps to write clean, structured, organized and easily testable code
+*✨ [MVVM architecture][1] - Helps to write clean, structured, organized and easily testable code
     * [Room Database][2] - For data storage and persistence
     * [ViewModel][3] - Stores and manages UI-related data in a lifecycle conscious way. It also allows data to survive configuration changes such as screen rotations.
     * [Repository][4] -  Handle data operations. provides a clean API so that the rest of the app can retrieve this data easily
     * [LiveData][15] & [Flow][16]
-* [Dagger Hilt][5] - A dependency injection library for Android that reduces the boilerplate of doing manual dependency injection in your project
-* [CardView Layout][6] - Gives views a card-like interface
-* [`RecyclerViews`][7] - for efficient display of large lists of data
+*✨ [Dagger Hilt][5] - A dependency injection library for Android that reduces the boilerplate of doing manual dependency injection in your project
+*✨ [CardView Layout][6] - Gives views a card-like interface
+*✨ [### `RecyclerViews`][7] - for efficient display of large lists of data
     * [ListAdapter][8]
     * [DiffUtil][9] -  calculates the difference between two lists to efficiently update a list displayed by RecyclerView.
-* [Coroutines][10] - Helps to manage long-running tasks that might otherwise block the main thread and cause your app to become unresponsive
-* [Fragments][11] - Provides reusable portions of the App's UI
-* [DataBinding][12] -  allows you to bind UI components in your layouts to data sources in your app using a declarative format rather than programmatically.
-* [BindingAdapters][13] - Responsible for making the appropriate framework calls to set values t o views ...
-* [Navigation Component][14] - Helps to implement navigation, from simple button clicks to more complex patterns, such as app bars and the navigation drawer
+*✨ [Coroutines][10] - Helps to manage long-running tasks that might otherwise block the main thread and cause your app to become unresponsive
+*✨ [Fragments][11] - Provides reusable portions of the App's UI
+*✨ [DataBinding][12] -  allows you to bind UI components in your layouts to data sources in your app using a declarative format rather than programmatically.
+*✨ [BindingAdapters][13] - Responsible for making the appropriate framework calls to set values t o views ...
+*✨ [Navigation Component][14] - Helps to implement navigation, from simple button clicks to more complex patterns, such as app bars and the navigation drawer
     *Safeargs - passing data between fragments
 
 ### Screenshots
