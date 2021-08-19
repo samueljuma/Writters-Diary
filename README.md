@@ -4,7 +4,7 @@ orders. It would serve writers across all categories: article writers, blog writ
 other user who would find the app useful. You can use the app as a <b>writer</b> or as a <b>client</b> or even <b>both</b>
 
 ## Tech Stack
-* ✨ [`<b>MVVM architecture</b>`][1] - Helps to write clean, structured, organized and easily testable code
+* ✨ [`MVVM architecture`][1] - Helps to write clean, structured, organized and easily testable code
     * [`Room Database`][2] - For data storage and persistence
     * [`ViewModel`][3] - Stores and manages UI-related data in a lifecycle conscious way. It also allows data to survive configuration changes such as screen rotations.
     * [`Repository`][4] -  Handle data operations. provides a clean API so that the rest of the app can retrieve this data easily
