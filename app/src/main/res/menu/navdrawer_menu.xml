@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/group1">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home_fragment_title" />
+
+    <item
+        android:id="@+id/writersFragment"
+        android:title="@string/my_writers"
+        android:icon="@drawable/ic_writers"/>
+    <item
+        android:id="@+id/clientsFragment"
+        android:title="@string/my_clients"
+        android:icon="@drawable/ic_clients"/>
+    </group>
+    <group android:id="@+id/group2"
+        android:checkableBehavior="single">
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/ic_about_info"
+        android:title="@string/about" />
+    <item
+        android:icon="@drawable/ic_share"
+        android:title="@string/share" />
+    </group>
+</menu>

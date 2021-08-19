@@ -20,7 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/about_vector" />
+            android:src="@drawable/homebcg" />
 
         <TextView
             android:id="@+id/about_text"

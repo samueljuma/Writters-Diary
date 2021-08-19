@@ -47,4 +47,5 @@
     <string name="writer_tasks">Writer\'s Tasks</string>
     <string name="new_task">New Task</string>
     <string name="new_client">New Client</string>
+    <string name="share">Share</string>
 </resources>
