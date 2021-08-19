@@ -1,5 +1,5 @@
 # Writer's Diary
-An Android Application build for online writers to keep track of their orders. It can be thought of as a diary for recording
+> An Android Application build for online writers to keep track of their orders. It can be thought of as a diary for recording
 orders. It would serve writers across all categories: article writers, blog writers, technical writers, academic writers and any
 other user who would find the app useful. You can use the app as a <b>writer</b> or as a <b>client</b> or even <b>both</b>
 
