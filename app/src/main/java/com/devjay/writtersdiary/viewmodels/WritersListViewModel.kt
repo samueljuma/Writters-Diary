@@ -4,15 +4,25 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.data.repository.WriterRepository
+import com.devjay.writtersdiary.data.repository.WriterTaskRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class WritersListViewModel @Inject constructor(
-    private val writerRepository: WriterRepository
+    private val writerRepository: WriterRepository,
+    private val writerTaskRepository: WriterTaskRepository
 ): ViewModel(){
     val listOfWriters = writerRepository.getAllWriters().asLiveData()
+
+    fun getAllPendingTasks(writerId: Long): LiveData<List<WriterTask>>{
+        return writerTaskRepository.getWriterPendingOrCompleteTasks(writerId, false).asLiveData()
+    }
+    fun getAllCompleteTasks(writerId: Long): LiveData<List<WriterTask>>{
+        return writerTaskRepository.getWriterPendingOrCompleteTasks(writerId, false).asLiveData()
+    }
 
     /**
      * NAVIGATION

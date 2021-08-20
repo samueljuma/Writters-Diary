@@ -28,6 +28,8 @@ class WriterTaskRepository @Inject constructor(
         writerTaskDao.updateTask(title,orderNo,wordCount,amount,isComplete,isPaid,taskId)
     }
 
+    fun getWriterPendingOrCompleteTasks(writerId: Long, isComplete: Boolean) = writerTaskDao.getAllWriterPendingOrCompleteTasks(writerId,isComplete)
+
     fun getWriterTask(taskId: Long) = writerTaskDao.getWriterTask(taskId)
 
     fun getAllWritersTasks(writerId: Long) = writerTaskDao.getAllWritersTasks(writerId)

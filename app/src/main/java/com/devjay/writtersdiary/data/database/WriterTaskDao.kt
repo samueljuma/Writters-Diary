@@ -1,6 +1,5 @@
 package com.devjay.writtersdiary.data.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.devjay.writtersdiary.data.entities.WriterTask
 import kotlinx.coroutines.flow.Flow
@@ -28,6 +27,9 @@ interface WriterTaskDao {
     // get a specific writerTask by ID
     @Query("SELECT *FROM writers_tasks_table WHERE taskID = :taskId")
     fun getWriterTask (taskId: Long): Flow<WriterTask>
+
+    @Query("SELECT * FROM writers_tasks_table WHERE writerID_assigned =:writerId AND is_complete=:isComplete")
+    fun getAllWriterPendingOrCompleteTasks(writerId: Long, isComplete: Boolean): Flow<List<WriterTask>>
 
     //get all writer's Tasks
     @Query("SELECT * FROM writers_tasks_table WHERE writerID_assigned = :assignedTo ORDER BY taskID DESC")

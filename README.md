@@ -20,6 +20,7 @@ other user who would find the app useful. You can use the app as a <b>writer</b>
 * ✨ [`BindingAdapters`][13] - Responsible for making the appropriate framework calls to set values t o views ...
 * ✨ [`Navigation Component`][14] - Helps to implement navigation, from simple button clicks to more complex patterns, such as app bars and the navigation drawer
     *Safeargs - passing data between fragments
+* ✨ [Google Truth Library][16] - for writing assertion during testing
 
 ### Screenshots
 |<img src="screenshots/1.png" width=250/>|<img src="screenshots/2.png" width=250/>|<img src="screenshots/3.png" width=250/>|<img src="screenshots/4.png" width=250/>|
