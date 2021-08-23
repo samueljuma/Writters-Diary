@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devjay.writtersdiary.databinding.FragmentUpdateWriterTaskBinding
 import com.devjay.writtersdiary.viewmodels.UpdateTaskViewModel
+import com.devjay.writtersdiary.viewmodels.UpdateWriterTaskViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,7 +17,7 @@ class UpdateWriterTaskFragment : Fragment() {
 
     private lateinit var binding: FragmentUpdateWriterTaskBinding
 
-    private val vieModel: UpdateTaskViewModel by viewModels()
+    private val vieModel: UpdateWriterTaskViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
