@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.devjay.writtersdiary.data.entities.ClientTask
+import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.databinding.FragmentUpdateClientTaskBinding
+import com.devjay.writtersdiary.viewmodels.ClientsListViewModel
 import com.devjay.writtersdiary.viewmodels.UpdateClientTaskViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,6 +20,8 @@ class UpdateClientTaskFragment : Fragment() {
     private lateinit var binding: FragmentUpdateClientTaskBinding
 
     private val viewModel: UpdateClientTaskViewModel by viewModels()
+
+    private val clientListViewModel: ClientsListViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,9 +43,23 @@ class UpdateClientTaskFragment : Fragment() {
             }
         })
 
+        var pendingTasks =0
+        var completedTasks =0
+
+        clientListViewModel.getAllPendingTasks(clientId).observe(viewLifecycleOwner,{ allPendingTasks->
+            allPendingTasks?.let {
+                pendingTasks = allPendingTasks.size
+            }
+        })
+        clientListViewModel.getAllCompletedTasks(clientId).observe(viewLifecycleOwner,{ allCompleteTasks->
+            allCompleteTasks?.let {
+                completedTasks = allCompleteTasks.size
+            }
+        })
+
         viewModel.updateTaskAndNavigateBackToClientTaskList.observe(viewLifecycleOwner, {
-            it?.let{
-                updateAndGoBack(clientTaskId,clientId)
+            it?.let{ clientTask->
+                updateClientTaskAndGoBack(clientTask,pendingTasks,completedTasks,clientTaskId,clientId)
             }
         })
 
@@ -56,6 +75,34 @@ class UpdateClientTaskFragment : Fragment() {
         return binding.root
     }
 
+    private fun updateClientTaskAndGoBack(clientTask: ClientTask, pendingTasks: Int,
+                                          completedTasks: Int, clientTaskId: Long, clientId: Long) {
+        var pendingTasks1 = pendingTasks
+        var completedTasks1 = completedTasks
+        val title = binding.titleEditText.text.toString()
+        val orderNo = binding.orderNumberEditText.text.toString()
+        val wordCount = binding.wordCountEditText.text.toString().toInt()
+        val amountPayable = binding.amtPayableEditText.text.toString().toDouble()
+        val isComplete = binding.isCompleteCheckbox.isChecked
+        val isPaid = binding.isPaidCheckbox.isChecked
+        if (clientTask.isComplete && !isComplete) {
+            pendingTasks1 += 1
+            completedTasks1 -= 1
+
+        } else if (!clientTask.isComplete && isComplete) {
+            pendingTasks1 -= 1
+            completedTasks1 += 1
+        }
+        viewModel.updateClientTask(title, orderNo, wordCount, amountPayable, isComplete, isPaid, clientTaskId)
+        this.findNavController().navigate(UpdateClientTaskFragmentDirections
+            .actionUpdateClientTaskFragmentToClientTaskListFragment(clientId))
+        viewModel.doneNavigatingBackToClientTaskList()
+
+        // update pending and completed Tasks for the specific client
+        clientListViewModel.updateCompletedTasks(clientId, completedTasks1)
+        clientListViewModel.updatePendingTasks(clientId, pendingTasks1)
+    }
+
     private fun updateAndGoBack(clientTaskId: Long, clientId: Long) {
         val title = binding.titleEditText.text.toString()
         val orderNo = binding.orderNumberEditText.text.toString()
@@ -68,5 +115,6 @@ class UpdateClientTaskFragment : Fragment() {
             .actionUpdateClientTaskFragmentToClientTaskListFragment(clientId))
         viewModel.doneNavigatingBackToClientTaskList()
     }
+
 
 }

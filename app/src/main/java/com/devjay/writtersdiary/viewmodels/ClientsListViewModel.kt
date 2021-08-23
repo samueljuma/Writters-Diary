@@ -21,7 +21,7 @@ class ClientsListViewModel @Inject constructor(
         return clientTaskRepository.getClientPendingOrCompleteTasks(clientId, false).asLiveData()
     }
     fun getAllCompletedTasks (clientId: Long): LiveData<List<ClientTask>> {
-        return clientTaskRepository.getClientPendingOrCompleteTasks(clientId, false).asLiveData()
+        return clientTaskRepository.getClientPendingOrCompleteTasks(clientId, true).asLiveData()
     }
 
     fun updatePendingTasks(clientId:Long, value:Int){
