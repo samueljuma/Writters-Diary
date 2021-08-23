@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devjay.writtersdiary.databinding.FragmentUpdateClientTaskBinding
+import com.devjay.writtersdiary.viewmodels.UpdateClientTaskViewModel
 import com.devjay.writtersdiary.viewmodels.UpdateTaskViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,7 +18,7 @@ class UpdateClientTaskFragment : Fragment() {
 
     private lateinit var binding: FragmentUpdateClientTaskBinding
 
-    private val viewModel: UpdateTaskViewModel by viewModels()
+    private val viewModel: UpdateClientTaskViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +30,8 @@ class UpdateClientTaskFragment : Fragment() {
         val clientTaskId = args.clientTaskId
         val clientId = args.clientId
 
+        binding.viewModel = viewModel
+
         val clientTask = viewModel.getClientTask(clientTaskId)
 
         clientTask.observe(viewLifecycleOwner, {
@@ -37,20 +40,35 @@ class UpdateClientTaskFragment : Fragment() {
             }
         })
 
-            viewModel.navigateToClientTaskList.observe(viewLifecycleOwner, {
-                if(it==true){
-                    this.findNavController().navigate(UpdateClientTaskFragmentDirections
-                        .actionUpdateClientTaskFragmentToClientTaskListFragment(clientId))
-                    viewModel.doneNavigatingToClientTaskList()
-                }
-            })
-//        binding.updateBtn.setOnClickListener {
-//            this.findNavController().navigate(UpdateClientTaskFragmentDirections
-//                .actionUpdateClientTaskFragmentToClientTaskListFragment(clientId))
-//        }
+        viewModel.updateTaskAndNavigateBackToClientTaskList.observe(viewLifecycleOwner, {
+            if(it==true){
+                updateAndGoBack(clientTaskId,clientId)
+            }
+        })
+
+        viewModel.cancelUpdatingTaskAndNavigateBackToClientTaskList.observe(viewLifecycleOwner,{
+            if(it==true){
+                this.findNavController().navigate(UpdateClientTaskFragmentDirections
+                    .actionUpdateClientTaskFragmentToClientTaskListFragment(clientId))
+                viewModel.doneCancelingAndNavigatingBackToClientTaskList()
+            }
+        })
 
 
         return binding.root
+    }
+
+    private fun updateAndGoBack(clientTaskId: Long, clientId: Long) {
+        val title = binding.titleEditText.text.toString()
+        val orderNo = binding.orderNumberEditText.text.toString()
+        val wordCount = binding.wordCountEditText.text.toString().toInt()
+        val amountPayable = binding.amtPayableEditText.text.toString().toDouble()
+        val isComplete = binding.isCompleteCheckbox.isChecked
+        val isPaid = binding.isPaidCheckbox.isChecked
+        viewModel.updateClientTask(title, orderNo, wordCount, amountPayable, isComplete, isPaid, clientTaskId)
+        this.findNavController().navigate(UpdateClientTaskFragmentDirections
+            .actionUpdateClientTaskFragmentToClientTaskListFragment(clientId))
+        viewModel.doneNavigatingBackToClientTaskList()
     }
 
 }
