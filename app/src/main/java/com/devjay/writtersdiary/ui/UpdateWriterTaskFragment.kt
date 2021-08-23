@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.databinding.FragmentUpdateWriterTaskBinding
-import com.devjay.writtersdiary.viewmodels.UpdateTaskViewModel
 import com.devjay.writtersdiary.viewmodels.UpdateWriterTaskViewModel
+import com.devjay.writtersdiary.viewmodels.WritersListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,6 +19,8 @@ class UpdateWriterTaskFragment : Fragment() {
     private lateinit var binding: FragmentUpdateWriterTaskBinding
 
     private val vieModel: UpdateWriterTaskViewModel by viewModels()
+
+    private val writersListViewModel: WritersListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,9 +43,24 @@ class UpdateWriterTaskFragment : Fragment() {
             }
         })
 
+        var pendingTasks =0
+        var completedTasks =0
+
+        writersListViewModel.getAllPendingTasks(writerId).observe(viewLifecycleOwner,{ allPendingTasks->
+            allPendingTasks?.let {
+                pendingTasks = allPendingTasks.size
+            }
+        })
+        writersListViewModel.getAllCompletedTasks(writerId).observe(viewLifecycleOwner,{ allCompleteTasks->
+            allCompleteTasks?.let {
+                completedTasks = allCompleteTasks.size
+            }
+        })
+
         vieModel.updateTaskAndNavigateBackToWritersTaskList.observe(viewLifecycleOwner,{
-            if(it==true){
-                updateAndGoBack(writerTaskId, writerId)
+            it?.let{ writerTask->
+                updateWriterTaskAndGoBack(writerTask, pendingTasks, completedTasks, writerTaskId, writerId)
+
             }
         })
         vieModel.cancelUpdatingTaskAndNavigateBackToWritersTaskList.observe(viewLifecycleOwner,{
@@ -57,19 +75,33 @@ class UpdateWriterTaskFragment : Fragment() {
         return binding.root
     }
 
-    private fun updateAndGoBack(writerTaskId: Long, writerId: Long) {
+    private fun updateWriterTaskAndGoBack(writerTask: WriterTask, pendingTasks: Int,
+                                 completedTasks: Int, writerTaskId: Long, writerId: Long) {
+        var pendingTasks1 = pendingTasks
+        var completedTasks1 = completedTasks
         val title = binding.titleEditText.text.toString()
         val orderNo = binding.orderNumberEditText.text.toString()
         val wordCount = binding.wordCountEditText.text.toString().toInt()
         val amountPayable = binding.amtPayableEditText.text.toString().toDouble()
         val isComplete = binding.isCompleteCheckbox.isChecked
         val isPaid = binding.isPaidCheckbox.isChecked
+        if (writerTask.isComplete && !isComplete) {
+            pendingTasks1 += 1
+            completedTasks1 -= 1
+
+        } else if (!writerTask.isComplete && isComplete) {
+            pendingTasks1 -= 1
+            completedTasks1 += 1
+        }
         vieModel.updateWriterTask(title, orderNo, wordCount, amountPayable, isComplete, isPaid, writerTaskId)
-        this.findNavController().navigate(
-            UpdateWriterTaskFragmentDirections
-                .actionUpdateWriterTaskFragmentToWriterTaskListFragment(writerId)
-        )
+        this.findNavController().navigate(UpdateWriterTaskFragmentDirections
+                .actionUpdateWriterTaskFragmentToWriterTaskListFragment(writerId))
         vieModel.doneNavigatingBackToWriterTaskList()
+
+        // update pending and completed Tasks for the specific writer
+        writersListViewModel.updateCompletedTasks(writerId, completedTasks1)
+        writersListViewModel.updatePendingTasks(writerId, pendingTasks1)
     }
+
 
 }

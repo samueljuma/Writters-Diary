@@ -22,11 +22,11 @@ class UpdateWriterTaskViewModel @Inject constructor(
         }
     }
 
-    private val _updateTaskAndNavigateBackToWritersTaskList = MutableLiveData<Boolean?>()
-    val updateTaskAndNavigateBackToWritersTaskList: LiveData<Boolean?>
+    private val _updateTaskAndNavigateBackToWritersTaskList = MutableLiveData<WriterTask?>()
+    val updateTaskAndNavigateBackToWritersTaskList: LiveData<WriterTask?>
         get() = _updateTaskAndNavigateBackToWritersTaskList
-    fun onUpdateWriterTaskClicked(){
-        _updateTaskAndNavigateBackToWritersTaskList.value =true
+    fun onUpdateWriterTaskClicked(writerTask: WriterTask){
+        _updateTaskAndNavigateBackToWritersTaskList.value =writerTask
     }
     fun doneNavigatingBackToWriterTaskList(){
         _updateTaskAndNavigateBackToWritersTaskList.value= null

@@ -23,11 +23,11 @@ class UpdateClientTaskViewModel @Inject constructor(
     }
 
     // update ClientTask and Navigate Back
-    private val _updateTaskAndNavigateBackToClientTaskList = MutableLiveData<Boolean?>()
-    val updateTaskAndNavigateBackToClientTaskList: LiveData<Boolean?>
+    private val _updateTaskAndNavigateBackToClientTaskList = MutableLiveData<ClientTask?>()
+    val updateTaskAndNavigateBackToClientTaskList: LiveData<ClientTask?>
         get() = _updateTaskAndNavigateBackToClientTaskList
-    fun onUpdateClientTaskClicked(){
-        _updateTaskAndNavigateBackToClientTaskList.value =true
+    fun onUpdateClientTaskClicked(clientTask: ClientTask){
+        _updateTaskAndNavigateBackToClientTaskList.value =clientTask
     }
     fun doneNavigatingBackToClientTaskList(){
         _updateTaskAndNavigateBackToClientTaskList.value= null

@@ -20,7 +20,7 @@ class WritersListViewModel @Inject constructor(
         return writerTaskRepository.getWriterPendingOrCompleteTasks(writerId, false).asLiveData()
     }
     fun getAllCompletedTasks (writerId: Long): LiveData<List<WriterTask>> {
-        return writerTaskRepository.getWriterPendingOrCompleteTasks(writerId, false).asLiveData()
+        return writerTaskRepository.getWriterPendingOrCompleteTasks(writerId, true).asLiveData()
     }
 
     fun updatePendingTasks(writerId:Long, value:Int){
