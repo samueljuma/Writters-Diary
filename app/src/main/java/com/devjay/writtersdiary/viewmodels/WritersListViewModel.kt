@@ -1,13 +1,12 @@
 package com.devjay.writtersdiary.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.*
 import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.data.repository.WriterRepository
 import com.devjay.writtersdiary.data.repository.WriterTaskRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,8 +19,19 @@ class WritersListViewModel @Inject constructor(
     fun getAllPendingTasks(writerId: Long): LiveData<List<WriterTask>>{
         return writerTaskRepository.getWriterPendingOrCompleteTasks(writerId, false).asLiveData()
     }
-    fun getAllCompleteTasks(writerId: Long): LiveData<List<WriterTask>>{
+    fun getAllCompletedTasks (writerId: Long): LiveData<List<WriterTask>> {
         return writerTaskRepository.getWriterPendingOrCompleteTasks(writerId, false).asLiveData()
+    }
+
+    fun updatePendingTasks(writerId:Long, value:Int){
+        viewModelScope.launch {
+            writerRepository.updatePendingTasks(writerId,value)
+        }
+    }
+    fun updateCompletedTasks(writerId:Long, value:Int){
+        viewModelScope.launch {
+            writerRepository.updateCompletedTasks(writerId,value)
+        }
     }
 
     /**

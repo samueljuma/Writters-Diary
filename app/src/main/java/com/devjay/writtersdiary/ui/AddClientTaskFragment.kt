@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devjay.writtersdiary.databinding.FragmentAddClientTaskBinding
 import com.devjay.writtersdiary.viewmodels.AddTaskViewModel
+import com.devjay.writtersdiary.viewmodels.ClientsListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,6 +19,8 @@ class AddClientTaskFragment : Fragment() {
     private lateinit var binding: FragmentAddClientTaskBinding
 
     private val viewModel: AddTaskViewModel by viewModels()
+
+    private val clientListViewModel: ClientsListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,9 +33,22 @@ class AddClientTaskFragment : Fragment() {
 
         val args = AddClientTaskFragmentArgs.fromBundle(requireArguments())
         val clientId:Long = args.clientId
+
+        //get pending Tasks
+        var pendingTasks =0
+        clientListViewModel.getAllPendingTasks(clientId).observe(viewLifecycleOwner,{
+            it?.let {
+                pendingTasks = it.size
+            }
+        })
         viewModel.addTaskAndNavigateBackToClientTaskList.observe(viewLifecycleOwner,{
             if (it==true){
                 addClientTaskToDatabase(clientId)
+
+                // update pending Tasks
+                clientListViewModel.updatePendingTasks(clientId, pendingTasks+1)
+
+                // navigate back to ClientTask List
                 this.findNavController().navigate(AddClientTaskFragmentDirections
                     .actionAddClientTaskFragmentToClientTaskListFragment(clientId))
                 viewModel.doneNavigatingBackToClientTaskList()

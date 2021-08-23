@@ -29,6 +29,9 @@ class ClientTaskRepository @Inject constructor(
         clientTaskDao.updateClientTaskPaid(isPaid,taskId)
     }
 
+    fun getClientPendingOrCompleteTasks(clientId: Long, isComplete: Boolean) = clientTaskDao.getAllClientPendingOrCompleteTasks(clientId,isComplete)
+
+
     fun getClientTask(taskId: Long) = clientTaskDao.getClientTask(taskId)
 
     fun getAllClientsTasks (clientId: Long) = clientTaskDao.getAllClientsTasks(clientId)

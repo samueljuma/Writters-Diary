@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devjay.writtersdiary.databinding.FragmentAddWriterTaskBinding
 import com.devjay.writtersdiary.viewmodels.AddTaskViewModel
+import com.devjay.writtersdiary.viewmodels.WritersListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,6 +19,9 @@ class AddWriterTaskFragment : Fragment() {
     private lateinit var binding: FragmentAddWriterTaskBinding
 
     private val viewModel: AddTaskViewModel by viewModels()
+
+    private val writersListViewModel: WritersListViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,9 +32,22 @@ class AddWriterTaskFragment : Fragment() {
 
         val args = AddWriterTaskFragmentArgs.fromBundle(requireArguments())
         val writerId:Long = args.writerId
+
+        //get pending Tasks
+        var pendingTasks =0
+        writersListViewModel.getAllPendingTasks(writerId).observe(viewLifecycleOwner,{
+            it?.let {
+                pendingTasks = it.size
+            }
+        })
+
         viewModel.addTaskAndNavigateBackToWriterTaskList.observe(viewLifecycleOwner,{
             if (it==true){
                 addWriterTaskToDatabase(writerId)
+                //update pending Tasks
+                writersListViewModel.updatePendingTasks(writerId,pendingTasks+1)
+
+                //navigate back to WriterTask List
                 this.findNavController().navigate(AddWriterTaskFragmentDirections
                     .actionAddWriterTaskFragmentToWriterTaskListFragment(writerId))
                 viewModel.doneNavigatingBackToWriterTaskList()

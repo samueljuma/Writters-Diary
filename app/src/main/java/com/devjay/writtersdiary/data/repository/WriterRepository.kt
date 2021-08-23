@@ -18,6 +18,14 @@ class WriterRepository @Inject constructor(
         writerDao.deleteWriter(writer)
     }
 
+    suspend fun updatePendingTasks(writerId: Long, value: Int){
+        writerDao.updatePendingTasks(writerId,value)
+    }
+
+    suspend fun updateCompletedTasks(writerId: Long, value: Int){
+        writerDao.updateCompleteTasks(writerId,value)
+    }
+
     fun getWriter(id: Long) = writerDao.getWriter(id)
 
     fun getAllWriters() = writerDao.getAllWriters()

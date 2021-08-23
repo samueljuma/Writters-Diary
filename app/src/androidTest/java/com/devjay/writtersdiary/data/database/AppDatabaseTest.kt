@@ -46,6 +46,7 @@ class AppDatabaseTest : TestCase(){
         assertThat(writerDao.getWriter(2).first()).isEqualTo(writer)
         assertThat(writer).isIn(writers)
 
+
         writerDao.deleteWriter(writer)
         writers = writerDao.getAllWriters().first()
 
@@ -72,22 +73,27 @@ class AppDatabaseTest : TestCase(){
     @Test
     fun testWriterTaskDao () = runBlocking{
 
-        val writerTask = WriterTask(3,System.currentTimeMillis() ,3,"234","Assignment",
-            3,2,3000.0,false,false)
+        var writerTask = WriterTask(3,System.currentTimeMillis() ,3,"234","Assignment",
+            3,2,3000.0,isComplete = false,isPaid = false)
         // insert
         writerTaskDao.insert(writerTask)
-        var writersTasks = writerTaskDao.getAllWritersTasks(3).first()
-        assertThat(writerTaskDao.getWriterTask(3).first()).isIn(writersTasks)
-        //update
-        writerTaskDao.updateTaskPaid(true,3)
-        assertThat(writerTaskDao.getWriterTask(3).first().isPaid).isTrue()
+        writerTask = WriterTask(1,System.currentTimeMillis() ,3,"234","Assignment",
+            3,2,3000.0,isComplete = false,isPaid = false)
+        writerTaskDao.insert(writerTask)
 
-        writerTaskDao.updateTaskComplete(true,3)
-        assertThat(writerTaskDao.getWriterTask(3).first().isComplete).isTrue()
-        //delete
-        writerTaskDao.deleteWriterTask(writerTaskDao.getWriterTask(3).first())
-        writersTasks = writerTaskDao.getAllWritersTasks(3).first()
-        assertThat(writerTaskDao.getWriterTask(3)).isNotIn(writersTasks)
+        assertThat(writerTaskDao.getAllWriterPendingOrCompleteTasks(3,false).first().size).isEqualTo(2)
+//        var writersTasks = writerTaskDao.getAllWritersTasks(3).first()
+//        assertThat(writerTaskDao.getWriterTask(3).first()).isIn(writersTasks)
+//        //update
+//        writerTaskDao.updateTaskPaid(true,3)
+//        assertThat(writerTaskDao.getWriterTask(3).first().isPaid).isTrue()
+//
+//        writerTaskDao.updateTaskComplete(true,3)
+//        assertThat(writerTaskDao.getWriterTask(3).first().isComplete).isTrue()
+//        //delete
+//        writerTaskDao.deleteWriterTask(writerTaskDao.getWriterTask(3).first())
+//        writersTasks = writerTaskDao.getAllWritersTasks(3).first()
+//        assertThat(writerTaskDao.getWriterTask(3)).isNotIn(writersTasks)
     }
 
     @Test

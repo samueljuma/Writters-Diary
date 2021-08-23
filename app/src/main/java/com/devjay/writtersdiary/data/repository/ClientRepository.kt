@@ -17,6 +17,13 @@ class ClientRepository @Inject constructor(
     suspend fun removeClientFromDatabase(client: Client){
         clientDao.deleteClient(client)
     }
+    suspend fun updatePendingTasks(clientId: Long, value: Int){
+        clientDao.updatePendingTasks(clientId,value)
+    }
+
+    suspend fun updateCompletedTasks(clientId: Long, value: Int){
+        clientDao.updateCompleteTasks(clientId,value)
+    }
 
     fun getClient(clientId: Long) = clientDao.getClient(clientId)
 

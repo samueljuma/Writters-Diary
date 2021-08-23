@@ -3,6 +3,7 @@ package com.devjay.writtersdiary.data.database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.devjay.writtersdiary.data.entities.ClientTask
+import com.devjay.writtersdiary.data.entities.WriterTask
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -28,6 +29,9 @@ interface ClientTaskDao {
     // get a specific clientTask by ID
     @Query("SELECT * FROM client_tasks_table WHERE taskID = :taskId")
     fun getClientTask (taskId: Long): Flow<ClientTask>
+
+    @Query("SELECT * FROM client_tasks_table WHERE assigned_by =:clientId AND is_complete=:isComplete")
+    fun getAllClientPendingOrCompleteTasks(clientId: Long, isComplete: Boolean): Flow<List<ClientTask>>
 
     //get all client's Tasks
     @Query("SELECT * FROM client_tasks_table WHERE assigned_by = :assignedBy ORDER BY taskID DESC")

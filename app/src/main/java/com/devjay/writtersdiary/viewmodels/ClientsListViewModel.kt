@@ -1,18 +1,39 @@
 package com.devjay.writtersdiary.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.*
+import com.devjay.writtersdiary.data.entities.ClientTask
+import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.data.repository.ClientRepository
+import com.devjay.writtersdiary.data.repository.ClientTaskRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ClientsListViewModel @Inject constructor(
-    private val clientRepository: ClientRepository
+    private val clientRepository: ClientRepository,
+    private val clientTaskRepository: ClientTaskRepository
 ): ViewModel(){
     val listOfClients = clientRepository.getAllClients().asLiveData()
+
+
+    fun getAllPendingTasks(clientId: Long): LiveData<List<ClientTask>>{
+        return clientTaskRepository.getClientPendingOrCompleteTasks(clientId, false).asLiveData()
+    }
+    fun getAllCompletedTasks (clientId: Long): LiveData<List<ClientTask>> {
+        return clientTaskRepository.getClientPendingOrCompleteTasks(clientId, false).asLiveData()
+    }
+
+    fun updatePendingTasks(clientId:Long, value:Int){
+        viewModelScope.launch {
+            clientRepository.updatePendingTasks(clientId,value)
+        }
+    }
+    fun updateCompletedTasks(clientId:Long, value:Int){
+        viewModelScope.launch {
+            clientRepository.updateCompletedTasks(clientId,value)
+        }
+    }
 
     /**
      * NAVIGATION
