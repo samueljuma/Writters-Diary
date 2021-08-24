@@ -1,12 +1,11 @@
 package com.devjay.writtersdiary.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.*
 import com.devjay.writtersdiary.data.entities.ClientTask
+import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.data.repository.ClientTaskRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,5 +36,19 @@ class ClientTaskListViewModel @Inject constructor(
     }
     fun doneNavigatingToUpdateClientTask(){
         _navigateToUpdateClientTask.value =null
+    }
+
+    private val _deleteClientTask = MutableLiveData<ClientTask?>()
+    val deleteClientTask: LiveData<ClientTask?>
+        get() = _deleteClientTask
+
+    fun onclickDeleteClientTask(clientTask: ClientTask){
+        _deleteClientTask.value = clientTask
+    }
+
+    fun deleteClientTask(clientTask: ClientTask){
+        viewModelScope.launch {
+            clientTaskRepository.removeClientTaskFromDatabase(clientTask)
+        }
     }
 }

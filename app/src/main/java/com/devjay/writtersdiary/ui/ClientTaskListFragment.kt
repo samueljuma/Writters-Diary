@@ -14,6 +14,7 @@ import com.devjay.writtersdiary.adpters.WriterTaskListAdapter
 import com.devjay.writtersdiary.databinding.FragmentClientTaskListBinding
 import com.devjay.writtersdiary.databinding.FragmentWriterTaskListBinding
 import com.devjay.writtersdiary.viewmodels.ClientTaskListViewModel
+import com.devjay.writtersdiary.viewmodels.ClientsListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +23,9 @@ class ClientTaskListFragment : Fragment() {
     private lateinit var binding: FragmentClientTaskListBinding
 
     private val viewModel:ClientTaskListViewModel by viewModels()
+
+    private val clientListViewModel: ClientsListViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,7 +34,7 @@ class ClientTaskListFragment : Fragment() {
 
         val adapter = ClientTaskListAdapter(ClientTaskListener{
             clientTaskId ->  viewModel.onClientTaskUpdateClicked(clientTaskId)
-        })
+        },viewModel)
 
         binding.clientTasksList.adapter =adapter
         binding.viewModel = viewModel
@@ -56,6 +60,37 @@ class ClientTaskListFragment : Fragment() {
                 this.findNavController().navigate(ClientTaskListFragmentDirections
                     .actionClientTaskListFragmentToUpdateClientTaskFragment(clientTask, clientId))
                 viewModel.doneNavigatingToUpdateClientTask()
+            }
+        })
+
+        //get pending and completed Tasks
+        var pendingTasks =0
+        var completedTasks =0
+
+        clientListViewModel.getAllPendingTasks(clientId).observe(viewLifecycleOwner,{ allPendingTasks->
+            allPendingTasks?.let {
+                pendingTasks = allPendingTasks.size
+            }
+        })
+        clientListViewModel.getAllCompletedTasks(clientId).observe(viewLifecycleOwner,{ allCompleteTasks->
+            allCompleteTasks?.let {
+                completedTasks = allCompleteTasks.size
+            }
+        })
+
+        /**
+         * Delete Observer
+         */
+        viewModel.deleteClientTask.observe(viewLifecycleOwner, {
+            it?.let {
+                viewModel.deleteClientTask(it)
+                if(it.isComplete){
+                    completedTasks -=1
+                    clientListViewModel.updateCompletedTasks(clientId,completedTasks)
+                }else if (!it.isComplete){
+                    pendingTasks -=1
+                    clientListViewModel.updatePendingTasks(clientId,pendingTasks)
+                }
             }
         })
 
