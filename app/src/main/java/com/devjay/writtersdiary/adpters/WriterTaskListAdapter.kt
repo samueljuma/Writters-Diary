@@ -7,21 +7,23 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.databinding.WriterTaskCardBinding
+import com.devjay.writtersdiary.viewmodels.WriterTaskListViewModel
 
-class WriterTaskListAdapter(val clickListener: WriterTaskListener): ListAdapter<WriterTask, WriterTaskListAdapter.ViewHolder>(WriterTaskDiffCallback()) {
+class WriterTaskListAdapter(val clickListener: WriterTaskListener, val viewModel: WriterTaskListViewModel): ListAdapter<WriterTask, WriterTaskListAdapter.ViewHolder>(WriterTaskDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position)!!,clickListener)
+        holder.bind(getItem(position)!!,clickListener,viewModel)
     }
 
     // viewHolder
     class ViewHolder (val binding: WriterTaskCardBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind (item: WriterTask, clickListener: WriterTaskListener){
+        fun bind (item: WriterTask, clickListener: WriterTaskListener, viewModel: WriterTaskListViewModel){
             binding.writerTask = item
+            binding.viewModel = viewModel
             binding.clickListener = clickListener
             binding.executePendingBindings()
         }

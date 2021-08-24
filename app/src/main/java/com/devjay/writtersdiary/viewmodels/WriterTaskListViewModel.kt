@@ -1,12 +1,10 @@
 package com.devjay.writtersdiary.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.*
 import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.data.repository.WriterTaskRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -38,5 +36,19 @@ class WriterTaskListViewModel @Inject constructor(
     }
     fun doneNavigatingToUpdateWriterTask(){
         _navigateToUpdateWriterTask.value =null
+    }
+
+    private val _deleteWriterTask = MutableLiveData<WriterTask?>()
+    val deleteWriterTask: LiveData<WriterTask?>
+        get() = _deleteWriterTask
+
+    fun onclickDeleteWriterTask(writerTask: WriterTask){
+        _deleteWriterTask.value = writerTask
+    }
+
+    fun deleteWriterTask(writerTask: WriterTask){
+        viewModelScope.launch {
+            writerTaskRepository.removeTaskFromDatabase(writerTask)
+        }
     }
 }

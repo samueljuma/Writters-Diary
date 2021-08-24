@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devjay.writtersdiary.adpters.WriterTaskListAdapter
 import com.devjay.writtersdiary.adpters.WriterTaskListener
 import com.devjay.writtersdiary.databinding.FragmentWriterTaskListBinding
 import com.devjay.writtersdiary.viewmodels.WriterTaskListViewModel
+import com.devjay.writtersdiary.viewmodels.WritersListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,16 +22,19 @@ class WriterTaskListFragment : Fragment() {
 
     private val viewModel: WriterTaskListViewModel by viewModels()
 
+    private val writersListViewModel: WritersListViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentWriterTaskListBinding.inflate(inflater, container, false)
 
-        binding.viewModel = viewModel
         val adapter = WriterTaskListAdapter(WriterTaskListener {
             writerTaskId ->  viewModel.onWriterTaskUpdateClicked(writerTaskId)
-        })
+        },viewModel)
+
+        binding.viewModel = viewModel
 
         val arguments = WriterTaskListFragmentArgs.fromBundle(requireArguments())
         val writerId = arguments.writerID
@@ -54,6 +59,41 @@ class WriterTaskListFragment : Fragment() {
                 this.findNavController().navigate(WriterTaskListFragmentDirections
                     .actionWriterTaskListFragmentToUpdateWriterTaskFragment(writerTask, writerId))
                 viewModel.doneNavigatingToUpdateWriterTask()
+            }
+        })
+        /**
+         * Get complete and pending tasks
+         */
+        var pendingTasks=0
+        var completedTasks=0
+
+        writersListViewModel.getAllPendingTasks(writerId).observe(viewLifecycleOwner,{ allPendingTasks->
+            allPendingTasks?.let {
+                pendingTasks = allPendingTasks.size
+            }
+        })
+        writersListViewModel.getAllCompletedTasks(writerId).observe(viewLifecycleOwner,{ allCompleteTasks->
+            allCompleteTasks?.let {
+                completedTasks = allCompleteTasks.size
+            }
+        })
+
+        /**
+         *  delete observer
+          */
+
+        viewModel.deleteWriterTask.observe(viewLifecycleOwner, {
+            it?.let {
+                viewModel.deleteWriterTask(it)
+                if(it.isComplete){
+                    completedTasks -=1
+                    writersListViewModel.updateCompletedTasks(writerId,completedTasks)
+                }
+                if(!it.isComplete){
+                    pendingTasks -=1
+                    writersListViewModel.updatePendingTasks(writerId,pendingTasks)
+                }
+                Toast.makeText(requireActivity(), "${it.title} order: ${it.orderNumber} deleted",Toast.LENGTH_SHORT).show()
             }
         })
 
