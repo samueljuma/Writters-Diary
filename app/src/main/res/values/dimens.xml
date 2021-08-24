@@ -6,4 +6,5 @@
     <dimen name="max_elevation">10dp</dimen>
     <dimen name="very_small_space">2dp</dimen>
     <dimen name="image_width">140dp</dimen>
+    <dimen name="recycler_view_padding_bottom">70dp</dimen>
 </resources>
