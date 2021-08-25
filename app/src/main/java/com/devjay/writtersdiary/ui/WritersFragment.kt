@@ -36,7 +36,7 @@ class WritersFragment : Fragment() {
         binding.viewModel = viewModel
         val adapter = WritersListAdapter(WriterListener {
             writerId ->  viewModel.onViewWriterClicked(writerId)
-        })
+        },viewModel)
         binding.writersList.adapter =adapter
 
         // handle recyclerview
@@ -59,6 +59,15 @@ class WritersFragment : Fragment() {
                 viewModel.doneNavigatingToWriterTasks()
             }
 
+        })
+
+        /**
+         * Delete Writer Observer
+         */
+        viewModel.deleteWriter.observe(viewLifecycleOwner, {
+            it?.let {
+                viewModel.deleteWriter(it)
+            }
         })
         return binding.root
     }

@@ -24,6 +24,9 @@ interface WriterTaskDao {
     @Query("UPDATE writers_tasks_table SET task_title= :title,order_number= :orderNo,number_of_words=:wordCount,amount_payable=:amount,is_complete=:isComplete,is_paid=:isPaid WHERE taskID= :taskId" )
     suspend fun updateTask(title: String, orderNo: String, wordCount: Int, amount: Double,isComplete: Boolean,isPaid: Boolean, taskId: Long)
 
+    @Query("DELETE FROM writers_tasks_table WHERE writerID_assigned= :writerId")
+    suspend fun deleteAllTasksFromTheWriter(writerId: Long)
+
     // get a specific writerTask by ID
     @Query("SELECT *FROM writers_tasks_table WHERE taskID = :taskId")
     fun getWriterTask (taskId: Long): Flow<WriterTask>

@@ -1,6 +1,7 @@
 package com.devjay.writtersdiary.viewmodels
 
 import androidx.lifecycle.*
+import com.devjay.writtersdiary.data.entities.Writer
 import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.data.repository.WriterRepository
 import com.devjay.writtersdiary.data.repository.WriterTaskRepository
@@ -56,5 +57,23 @@ class WritersListViewModel @Inject constructor(
     }
     fun doneNavigatingToWriterTasks(){
         _navigateToWriterTasks.value =null
+    }
+
+    private val _deleteWriter = MutableLiveData<Writer?>()
+    val deleteWriter: LiveData<Writer?>
+        get() = _deleteWriter
+
+    fun onclickDeleteWriter(writer: Writer){
+        _deleteWriter.value = writer
+    }
+
+    fun deleteWriter(writer: Writer){
+        viewModelScope.launch {
+            // delete Writer
+            writerRepository.removeWriterFromDatabase(writer)
+
+            //delete all tasks from user
+            writerTaskRepository.deleteAllTasksFromTheWriter(writer.writerID)
+        }
     }
 }
