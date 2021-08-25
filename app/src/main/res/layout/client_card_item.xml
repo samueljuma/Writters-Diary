@@ -5,6 +5,9 @@
 
     <data>
         <variable
+            name="viewModel"
+            type="com.devjay.writtersdiary.viewmodels.ClientsListViewModel" />
+        <variable
             name="client"
             type="com.devjay.writtersdiary.data.entities.Client" />
         <variable
@@ -98,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/medium_space"
                 android:layout_marginEnd="@dimen/wide_space"
+                android:onClick="@{()->viewModel.onclickDeleteClient(client)}"
                 android:contentDescription="@string/delete"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView2"

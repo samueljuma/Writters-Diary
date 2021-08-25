@@ -34,7 +34,7 @@ class ClientsFragment : Fragment() {
 
         val adapter = ClientsListAdapter(ClientListener {
                 clientId ->  viewModel.onViewClientTasksClicked(clientId)
-        })
+        },viewModel)
         binding.clientList.adapter=adapter
 
         subscribeUI(adapter,binding)
@@ -42,7 +42,7 @@ class ClientsFragment : Fragment() {
         binding.viewModel = viewModel
 
         /**
-         * Navigation Observers
+         * NAVIGATION OBSERVERS
          */
         viewModel.navigateToAddClientFragment.observe(viewLifecycleOwner, Observer {
             if(it==true){
@@ -59,6 +59,15 @@ class ClientsFragment : Fragment() {
                 viewModel.doneNavigatingToClientTasks()
             }
 
+        })
+
+        /**
+         * delete observer
+         */
+        viewModel.deleteClient.observe(viewLifecycleOwner, {
+            it?.let {
+                viewModel.deleteClient(it)
+            }
         })
 
         return binding.root

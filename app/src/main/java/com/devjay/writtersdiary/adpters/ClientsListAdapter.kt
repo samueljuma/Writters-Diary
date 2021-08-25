@@ -8,21 +8,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devjay.writtersdiary.data.entities.Client
 import com.devjay.writtersdiary.data.entities.Writer
 import com.devjay.writtersdiary.databinding.ClientCardItemBinding
+import com.devjay.writtersdiary.viewmodels.ClientsListViewModel
 
-class ClientsListAdapter(val clickListener: ClientListener): ListAdapter<Client, ClientsListAdapter.ViewHolder>(ClientDiffCallback()) {
+class ClientsListAdapter(val clickListener: ClientListener, val viewModel: ClientsListViewModel): ListAdapter<Client, ClientsListAdapter.ViewHolder>(ClientDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position)!!,clickListener)
+        holder.bind(getItem(position)!!,clickListener,viewModel)
     }
 
     // viewHolder
     class ViewHolder (val binding: ClientCardItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind (item: Client, clickListener:ClientListener){
+        fun bind (item: Client, clickListener:ClientListener, viewModel: ClientsListViewModel){
             binding.client = item
+            binding.viewModel = viewModel
             binding.clickListener = clickListener
             binding.executePendingBindings()
         }

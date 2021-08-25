@@ -30,6 +30,9 @@ interface ClientTaskDao {
     @Query("SELECT * FROM client_tasks_table WHERE taskID = :taskId")
     fun getClientTask (taskId: Long): Flow<ClientTask>
 
+    @Query("DELETE FROM client_tasks_table WHERE assigned_by= :clientId")
+    suspend fun deleteAllTasksFromTheClient(clientId: Long)
+
     @Query("SELECT * FROM client_tasks_table WHERE assigned_by =:clientId AND is_complete=:isComplete")
     fun getAllClientPendingOrCompleteTasks(clientId: Long, isComplete: Boolean): Flow<List<ClientTask>>
 

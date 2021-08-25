@@ -1,7 +1,9 @@
 package com.devjay.writtersdiary.viewmodels
 
 import androidx.lifecycle.*
+import com.devjay.writtersdiary.data.entities.Client
 import com.devjay.writtersdiary.data.entities.ClientTask
+import com.devjay.writtersdiary.data.entities.Writer
 import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.data.repository.ClientRepository
 import com.devjay.writtersdiary.data.repository.ClientTaskRepository
@@ -57,5 +59,23 @@ class ClientsListViewModel @Inject constructor(
     }
     fun doneNavigatingToClientTasks(){
         _navigateToClientTasks.value =null
+    }
+
+    private val _deleteClient = MutableLiveData<Client?>()
+    val deleteClient: LiveData<Client?>
+        get() = _deleteClient
+
+    fun onclickDeleteClient(client: Client){
+        _deleteClient.value = client
+    }
+
+    fun deleteClient(client: Client){
+        viewModelScope.launch {
+            // delete Client
+            clientRepository.removeClientFromDatabase(client)
+
+            //delete all tasks from client
+            clientTaskRepository.deleteAllTasksFromTheClient(client.clientID)
+        }
     }
 }

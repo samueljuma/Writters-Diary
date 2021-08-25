@@ -6,7 +6,6 @@ import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.data.repository.WriterRepository
 import com.devjay.writtersdiary.data.repository.WriterTaskRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -72,7 +71,7 @@ class WritersListViewModel @Inject constructor(
             // delete Writer
             writerRepository.removeWriterFromDatabase(writer)
 
-            //delete all tasks from user
+            //delete all tasks assigned to the Writer
             writerTaskRepository.deleteAllTasksFromTheWriter(writer.writerID)
         }
     }
