@@ -1,10 +1,12 @@
 package com.devjay.writtersdiary.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devjay.writtersdiary.data.entities.ClientTask
@@ -60,6 +62,10 @@ class UpdateClientTaskFragment : Fragment() {
         viewModel.updateTaskAndNavigateBackToClientTaskList.observe(viewLifecycleOwner, {
             it?.let{ clientTask->
                 updateClientTaskAndGoBack(clientTask,pendingTasks,completedTasks,clientTaskId,clientId)
+
+                // Hide Keyboard
+                val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view?.windowToken,0)
             }
         })
 
@@ -68,6 +74,11 @@ class UpdateClientTaskFragment : Fragment() {
                 this.findNavController().navigate(UpdateClientTaskFragmentDirections
                     .actionUpdateClientTaskFragmentToClientTaskListFragment(clientId))
                 viewModel.doneCancelingAndNavigatingBackToClientTaskList()
+
+                // Hide Keyboard
+                val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view?.windowToken,0)
+
             }
         })
 

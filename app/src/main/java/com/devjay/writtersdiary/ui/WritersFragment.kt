@@ -1,5 +1,6 @@
 package com.devjay.writtersdiary.ui
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

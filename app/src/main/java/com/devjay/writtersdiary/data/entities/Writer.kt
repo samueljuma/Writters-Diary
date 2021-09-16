@@ -2,9 +2,10 @@ package com.devjay.writtersdiary.data.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "writers_table")
+@Entity(tableName = "writers_table", indices = [Index(value = ["writer_name"],unique = true)])
 data class Writer(
 
     @PrimaryKey(autoGenerate = true) var writerID: Long = 0L,

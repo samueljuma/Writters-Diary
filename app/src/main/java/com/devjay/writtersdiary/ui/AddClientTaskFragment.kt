@@ -1,10 +1,12 @@
 package com.devjay.writtersdiary.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -52,6 +54,10 @@ class AddClientTaskFragment : Fragment() {
                 this.findNavController().navigate(AddClientTaskFragmentDirections
                     .actionAddClientTaskFragmentToClientTaskListFragment(clientId))
                 viewModel.doneNavigatingBackToClientTaskList()
+
+                // Hide Keyboard
+                val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view?.windowToken,0)
             }
         })
 
