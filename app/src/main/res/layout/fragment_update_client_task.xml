@@ -156,11 +156,11 @@
 
             <TextView
                 android:id="@+id/update_Btn"
-                style="@style/bold_text_black"
+                style="@style/bold_text_white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/very_small_space"
-                android:background="@drawable/white_round_corner_background"
+                android:background="@drawable/green_round_corner"
                 android:padding="@dimen/medium_space"
                 android:text="@string/update"
                 android:onClick="@{()->viewModel.onUpdateClientTaskClicked(clientTask)}"
@@ -173,10 +173,10 @@
 
             <TextView
                 android:id="@+id/cancelBtn"
-                style="@style/bold_text_black"
+                style="@style/bold_text_white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/white_round_corner_background"
+                android:background="@drawable/red_round_corner"
                 android:padding="@dimen/medium_space"
                 android:text="@string/cancel"
                 android:onClick="@{()->viewModel.onCancelUpdateClientTaskClicked()}"
@@ -212,7 +212,6 @@
                 android:ems="10"
                 android:hint="@string/enter_order_number"
                 android:importantForAutofill="no"
-                android:inputType="numberDecimal"
                 android:padding="@dimen/medium_space"
                 app:clientTaskEditableOrderNo="@{clientTask}"
                 app:layout_constraintBottom_toBottomOf="parent"

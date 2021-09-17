@@ -4,18 +4,13 @@
         android:width="2dp"
         android:color="#1B5E20"/>
     <corners
-        android:radius="25dp"/>
+        android:radius="4dp"/>
     <padding
-        android:left="@dimen/small_space"
-        android:right="@dimen/small_space"
-        android:bottom="@dimen/small_space"
-        android:top="@dimen/small_space"/>
+        android:left="@dimen/medium_space"
+        android:right="@dimen/medium_space"
+        android:bottom="@dimen/medium_space"
+        android:top="@dimen/medium_space"/>
     <solid
         android:color="#1B5E20"/>
-    <padding
-        android:bottom="@dimen/small_space"
-        android:left="@dimen/wide_space"
-        android:right="@dimen/wide_space"
-        android:top="@dimen/small_space"/>
 
 </shape>

@@ -52,4 +52,5 @@
     <string name="delete_all">Delete All</string>
     <string name="clear_all_data">Clear All Data</string>
     <string name="_delete">Delete</string>
+    <string name="edit">Edit</string>
 </resources>

@@ -219,31 +219,38 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <ImageView
-                android:id="@+id/icon_edit"
+            <TextView
+                android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/very_small_space"
+                android:layout_marginBottom="@dimen/very_small_space"
+                android:background="@drawable/green_round_corner"
                 android:onClick="@{()->clickListener.onClick(clientTask)}"
+                android:text="@string/edit"
+                android:textColor="@color/white"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                app:srcCompat="@android:drawable/ic_menu_edit"
-                android:contentDescription="@string/edit_icon" />
+                app:layout_constraintTop_toTopOf="@+id/textView" />
 
-            <ImageView
-                android:id="@+id/icon_delete"
+            <TextView
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/delete"
+                android:layout_marginStart="@dimen/wide_space"
+                android:background="@drawable/red_round_corner"
                 android:onClick="@{()->viewModel.onclickDeleteClientTask(clientTask)}"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/_delete"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView1"
                 app:layout_constraintEnd_toStartOf="@+id/textView"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintStart_toEndOf="@+id/icon_edit"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                app:srcCompat="@android:drawable/ic_menu_delete" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textView1"
+                app:layout_constraintTop_toTopOf="@+id/textView1" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
