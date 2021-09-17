@@ -12,7 +12,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.devjay.writtersdiary.R
 import com.devjay.writtersdiary.databinding.FragmentHomeBinding
+import com.devjay.writtersdiary.viewmodels.ClientsListViewModel
 import com.devjay.writtersdiary.viewmodels.HomeViewModel
+import com.devjay.writtersdiary.viewmodels.WritersListViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,6 +30,10 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     private val viewModel: HomeViewModel by viewModels()
+
+    private val writersListViewModel: WritersListViewModel by viewModels()
+
+    private val clientsListViewModel: ClientsListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,8 +75,23 @@ class HomeFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item,
-            requireView().findNavController())
-                ||super.onOptionsItemSelected(item)
+
+        return when(item.itemId){
+            R.id.clearAllData -> {
+                //clear all data related to clients
+                clientsListViewModel.deleteAllClients()
+
+                //clear all data related to writers
+                writersListViewModel.deleteAllWriters()
+                Toast.makeText(context, "All Data Cleared",Toast.LENGTH_SHORT).show()
+                true
+            }
+            else ->{
+                NavigationUI.onNavDestinationSelected(item,
+                    requireView().findNavController())
+                        ||super.onOptionsItemSelected(item)
+            }
+        }
+
     }
 }

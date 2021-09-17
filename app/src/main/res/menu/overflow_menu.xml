@@ -6,4 +6,8 @@
         android:id="@+id/aboutFragment"
         android:title="@string/about"
         android:icon="@drawable/ic_about_info" />
+    <item
+        android:id="@+id/clearAllData"
+        android:title="@string/clear_all_data" />
+
 </menu>
