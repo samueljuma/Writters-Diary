@@ -78,4 +78,13 @@ class ClientsListViewModel @Inject constructor(
             clientTaskRepository.deleteAllTasksFromTheClient(client.clientID)
         }
     }
+    fun deleteAllClients(){
+        viewModelScope.launch {
+            //delete all clients
+            clientRepository.deleteAllClients()
+            //delete all tasks
+            clientTaskRepository.deleteAllTasks()
+        }
+    }
+
 }

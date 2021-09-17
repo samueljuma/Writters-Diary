@@ -85,7 +85,7 @@ class WritersFragment : Fragment() {
         return when(item.itemId){
             R.id.deleteAllWriters -> {
                 viewModel.deleteAllWriters()
-                Toast.makeText(context,"delete All", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,"All Writers Deleted", Toast.LENGTH_SHORT).show()
                 true
             }
             else ->{

@@ -15,6 +15,9 @@ interface ClientTaskDao {
     @Delete
     suspend fun deleteClientTask(clientTask: ClientTask)
 
+    @Query("DELETE FROM writers_tasks_table")
+    suspend fun deleteAllTasks()
+
     // update clientTask if Complete
     @Query("UPDATE client_tasks_table SET is_complete = :isComplete WHERE taskID = :taskID")
     suspend fun updateClientTaskComplete(isComplete: Boolean, taskID: Long)

@@ -13,6 +13,10 @@ interface ClientDao {
     // delete client
     @Delete
     suspend fun deleteClient (client: Client)
+
+    @Query("DELETE FROM clients_table")
+    suspend fun deleteAllClients()
+
     @Query ("UPDATE clients_table SET pending_tasks = :value WHERE clientID = :clientId")
     suspend fun updatePendingTasks(clientId: Long, value: Int)
 
