@@ -45,19 +45,37 @@ class AddClientTaskFragment : Fragment() {
         })
         viewModel.addTaskAndNavigateBackToClientTaskList.observe(viewLifecycleOwner,{
             if (it==true){
-                addClientTaskToDatabase(clientId)
+                if (allFieldsAreFilled()){
+                    addClientTaskToDatabase(clientId)
 
-                // update pending Tasks
-                clientListViewModel.updatePendingTasks(clientId, pendingTasks+1)
+                    // update pending Tasks
+                    clientListViewModel.updatePendingTasks(clientId, pendingTasks+1)
 
-                // navigate back to ClientTask List
-                this.findNavController().navigate(AddClientTaskFragmentDirections
-                    .actionAddClientTaskFragmentToClientTaskListFragment(clientId))
-                viewModel.doneNavigatingBackToClientTaskList()
+                    // navigate back to ClientTask List
+                    this.findNavController().navigate(AddClientTaskFragmentDirections
+                        .actionAddClientTaskFragmentToClientTaskListFragment(clientId))
+                    viewModel.doneNavigatingBackToClientTaskList()
 
-                // Hide Keyboard
-                val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(view?.windowToken,0)
+                    // Hide Keyboard
+                    val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(view?.windowToken,0)
+                }
+                else{
+                    if (binding.taskTitleEditText.text.isEmpty()) {
+                        binding.taskTitleEditText.setError("Required")
+                    }
+                    if (binding.orderNumberEditText.text.isEmpty()) {
+                        binding.orderNumberEditText.setError("Required")
+                    }
+                    if (binding.wordCountEditText.text.isEmpty()) {
+                        binding.wordCountEditText.setError("Required")
+                    }
+                    if (binding.amountPayableEditText.text.isEmpty()) {
+                        binding.amountPayableEditText.setError("Required")
+                    }
+                    Toast.makeText(requireActivity(), "All fields required", Toast.LENGTH_SHORT).show()
+                }
+
             }
         })
 
@@ -70,6 +88,11 @@ class AddClientTaskFragment : Fragment() {
         val amount = binding.amountPayableEditText.text.toString().toDouble()
         viewModel.addClientTask(clientId, title, orderNo, wordCount, amount)
         Toast.makeText(requireActivity(), "Task Added", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun allFieldsAreFilled(): Boolean {
+        return binding.taskTitleEditText.text.isNotEmpty() && binding.orderNumberEditText.text.isNotEmpty()&&
+                binding.wordCountEditText.text.isNotEmpty() && binding.amountPayableEditText.text.isNotEmpty()
     }
 
 }

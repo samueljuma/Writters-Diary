@@ -114,18 +114,5 @@ class UpdateClientTaskFragment : Fragment() {
         clientListViewModel.updatePendingTasks(clientId, pendingTasks1)
     }
 
-    private fun updateAndGoBack(clientTaskId: Long, clientId: Long) {
-        val title = binding.titleEditText.text.toString()
-        val orderNo = binding.orderNumberEditText.text.toString()
-        val wordCount = binding.wordCountEditText.text.toString().toInt()
-        val amountPayable = binding.amtPayableEditText.text.toString().toDouble()
-        val isComplete = binding.isCompleteCheckbox.isChecked
-        val isPaid = binding.isPaidCheckbox.isChecked
-        viewModel.updateClientTask(title, orderNo, wordCount, amountPayable, isComplete, isPaid, clientTaskId)
-        this.findNavController().navigate(UpdateClientTaskFragmentDirections
-            .actionUpdateClientTaskFragmentToClientTaskListFragment(clientId))
-        viewModel.doneNavigatingBackToClientTaskList()
-    }
-
 
 }
