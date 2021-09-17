@@ -13,6 +13,9 @@ interface WriterTaskDao {
     @Delete
     suspend fun deleteWriterTask(writerTask: WriterTask)
 
+    @Query("DELETE FROM writers_tasks_table")
+    suspend fun deleteAllTasks()
+
     // update writerTask if complete
     @Query("UPDATE writers_tasks_table SET is_complete = :isComplete WHERE taskID = :taskID")
     suspend fun updateTaskComplete(isComplete: Boolean, taskID: Long)

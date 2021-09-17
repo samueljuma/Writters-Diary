@@ -75,4 +75,13 @@ class WritersListViewModel @Inject constructor(
             writerTaskRepository.deleteAllTasksFromTheWriter(writer.writerID)
         }
     }
+    fun deleteAllWriters (){
+        viewModelScope.launch {
+            // clear writers
+            writerRepository.deleteAllWriters()
+
+            //clear all tasks
+            writerTaskRepository.deleteAllTasks()
+        }
+    }
 }

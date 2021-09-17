@@ -15,6 +15,9 @@ interface WriterDao {
     @Delete
     suspend fun deleteWriter(writer: Writer)
 
+    @Query("DELETE FROM writers_table")
+    suspend fun deleteAllWriters()
+
     @Query ("UPDATE writers_table SET pending_tasks = :value WHERE writerID = :writerId")
     suspend fun updatePendingTasks(writerId: Long, value: Int)
 

@@ -51,4 +51,9 @@ class WriterTaskListViewModel @Inject constructor(
             writerTaskRepository.removeTaskFromDatabase(writerTask)
         }
     }
+    fun deleteAllTasks(){
+        viewModelScope.launch {
+            writerTaskRepository.deleteAllTasks()
+        }
+    }
 }

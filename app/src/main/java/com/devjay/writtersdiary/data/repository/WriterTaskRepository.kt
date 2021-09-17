@@ -17,6 +17,10 @@ class WriterTaskRepository @Inject constructor(
         writerTaskDao.deleteWriterTask(writerTask)
     }
 
+    suspend fun deleteAllTasks(){
+        writerTaskDao.deleteAllTasks()
+    }
+
     suspend fun updateWriterTaskComplete(isComplete: Boolean, taskId: Long){
         writerTaskDao.updateTaskComplete(isComplete,taskId)
     }
