@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "writers_table", indices = [Index(value = ["writer_name"],unique = true)])
+@Entity(tableName = "writers_table")
 data class Writer(
 
     @PrimaryKey(autoGenerate = true) var writerID: Long = 0L,

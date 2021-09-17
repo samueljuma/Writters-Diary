@@ -10,7 +10,7 @@ import com.devjay.writtersdiary.data.entities.Writer
 import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.utils.DATABASE_NAME
 
-@Database(entities = [Writer::class, WriterTask::class, Client::class, ClientTask::class], version = 1, exportSchema = false)
+@Database(entities = [Writer::class, WriterTask::class, Client::class, ClientTask::class], version = 2, exportSchema = false)
 abstract class AppDatabase (): RoomDatabase(){
     abstract val writerDao: WriterDao
     abstract val writerTaskDao: WriterTaskDao
