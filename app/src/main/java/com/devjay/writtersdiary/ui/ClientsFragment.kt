@@ -12,7 +12,6 @@ import androidx.navigation.ui.NavigationUI
 import com.devjay.writtersdiary.R
 import com.devjay.writtersdiary.adpters.ClientListener
 import com.devjay.writtersdiary.adpters.ClientsListAdapter
-import com.devjay.writtersdiary.adpters.WriterListener
 import com.devjay.writtersdiary.databinding.FragmentClientsBinding
 import com.devjay.writtersdiary.viewmodels.ClientsListViewModel
 import dagger.hilt.android.AndroidEntryPoint

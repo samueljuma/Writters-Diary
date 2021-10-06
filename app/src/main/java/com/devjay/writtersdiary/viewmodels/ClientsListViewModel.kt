@@ -3,8 +3,6 @@ package com.devjay.writtersdiary.viewmodels
 import androidx.lifecycle.*
 import com.devjay.writtersdiary.data.entities.Client
 import com.devjay.writtersdiary.data.entities.ClientTask
-import com.devjay.writtersdiary.data.entities.Writer
-import com.devjay.writtersdiary.data.entities.WriterTask
 import com.devjay.writtersdiary.data.repository.ClientRepository
 import com.devjay.writtersdiary.data.repository.ClientTaskRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

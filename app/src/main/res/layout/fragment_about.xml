@@ -13,14 +13,14 @@
         <ImageView
             android:id="@+id/aboutImage"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:layout_marginStart="@dimen/medium_space"
             android:layout_marginTop="@dimen/small_space"
             android:layout_marginEnd="@dimen/medium_space"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/homebcg" />
+            android:src="@drawable/ic_launcher_foreground" />
 
         <TextView
             android:id="@+id/about_text"
